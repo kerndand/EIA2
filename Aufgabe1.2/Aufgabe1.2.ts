@@ -11,7 +11,8 @@ namespace Boxes {
             case 0:
                 c = "#ff0000";
                 break;
-            case 1:             case 4:
+            case 1:             
+            case 4:
                 c = "#00ff00";
                 break;
             case 3:
