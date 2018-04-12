@@ -1,11 +1,11 @@
 namespace Aufgabe2 {
     
     let numPlayers: number = 1;
-    let numPairs: number;
+    let numPairs: number = 8;
+    let numCards: number = numPairs * 2;
     let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
     
 // Spielerinfo    
-    
     let eingabeSpieler: string = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
         
     switch (eingabeSpieler) {
@@ -27,7 +27,7 @@ namespace Aufgabe2 {
             break;
             
         default: 
-            location.reload();
+           location.reload();
     }
     
     for ( let i: number = 1; i < numPlayers; i++) {
@@ -38,7 +38,7 @@ namespace Aufgabe2 {
             
             let playerDiv: HTMLDivElement = document.createElement("div");
             document.body.appendChild(playerDiv);
-               
+                    
             let stylePlayerBox: CSSStyleDeclaration = playerDiv.style;
             stylePlayerBox.backgroundColor = "lightgray";
             stylePlayerBox.maxWidth = "20%";
@@ -59,9 +59,7 @@ namespace Aufgabe2 {
             stylePoints.textAlign = "center";
     }
     
-// Memory    
+// Memory
     
-
-
-
+   
 }

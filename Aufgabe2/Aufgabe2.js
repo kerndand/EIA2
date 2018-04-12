@@ -1,7 +1,8 @@
 var Aufgabe2;
 (function (Aufgabe2) {
     let numPlayers = 1;
-    let numPairs;
+    let numPairs = 8;
+    let numCards = numPairs * 2;
     let cardContent = ["A", "B", "C", "D", "E", "F", "G", "H"];
     // Spielerinfo    
     let eingabeSpieler = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
