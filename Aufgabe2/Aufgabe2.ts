@@ -1,3 +1,11 @@
+/*
+Aufgabe: 2 : DynHTML - Memory
+Name: Daniel Kern   
+Matrikel: 257171
+Datum: 13.04.18
+    
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
 namespace Aufgabe2 {
     
     let numPlayers: number = 1;
