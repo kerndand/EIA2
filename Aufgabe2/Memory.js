@@ -7,14 +7,14 @@ var Aufgabe2;
     class Card {
         constructor(_cardContent) {
             this.cardContent = _cardContent;
-            let randomStatus = Math.random() * 11;
-            if (randomStatus <= 6) {
+            let randomStatus = Math.random() * 101;
+            if (randomStatus <= 55) {
                 this.cardStatus = "hidden";
             }
-            else if (randomStatus > 6 && randomStatus <= 8) {
+            else if (randomStatus > 55 && randomStatus <= 77) {
                 this.cardStatus = "taken";
             }
-            else if (randomStatus > 8) {
+            else if (randomStatus > 77) {
                 this.cardStatus = "open";
             }
         }
@@ -49,7 +49,7 @@ var Aufgabe2;
         }
         shuffleArray(cardArray);
         for (let i = 0; i < cardArray.length; i++) {
-            document.getElementById("game").appendChild(cardArray[i]);
+            document.getElementById("mittig").appendChild(cardArray[i]);
         }
         let eingabeSpieler = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
         switch (eingabeSpieler) {

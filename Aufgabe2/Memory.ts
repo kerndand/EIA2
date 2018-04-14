@@ -16,13 +16,13 @@ class Card {
     constructor (_cardContent: string) {
         this.cardContent = _cardContent;
          
-        let randomStatus: number = Math.random() * 11;
+        let randomStatus: number = Math.random() * 101;
                 
-        if (randomStatus <= 6) {
+        if (randomStatus <= 55) {
             this.cardStatus = "hidden";
-        } else if (randomStatus > 6 && randomStatus <= 8) {
+        } else if (randomStatus > 55 && randomStatus <= 77) {
             this.cardStatus = "taken";
-        }else if (randomStatus > 8) {
+        }else if (randomStatus > 77) {
             this.cardStatus = "open";
         }
     }     
@@ -64,7 +64,7 @@ function main(): void {
     shuffleArray(cardArray);
     
     for (let i: number = 0; i < cardArray.length; i++) {
-      document.getElementById("game").appendChild(cardArray[i]);
+      document.getElementById("mittig").appendChild(cardArray[i]);
     }
     
     let eingabeSpieler: string = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
@@ -93,25 +93,19 @@ function main(): void {
         spielerDiv(i);
     }     
             
-            function spielerDiv(_numPlayers: number): void {
+    function spielerDiv(_numPlayers: number): void {
                     
-                    let playerDiv: HTMLDivElement = document.createElement("div");
-                    document.getElementById("scoreboard").appendChild(playerDiv);
-                            
-                    
-                    
-                    let player: HTMLParagraphElement = document.createElement("p");
-                    playerDiv.appendChild(player);
-                    player.innerHTML = "Spieler " + _numPlayers;
-                    
-                    
-                
-                    let points: HTMLParagraphElement = document.createElement("p");
-                    playerDiv.appendChild(points);
-                    points.innerHTML = "Punkte: 00";
-                
-                  
-        } 
+        let playerDiv: HTMLDivElement = document.createElement("div");
+        document.getElementById("scoreboard").appendChild(playerDiv);
+   
+        let player: HTMLParagraphElement = document.createElement("p");
+        playerDiv.appendChild(player);
+        player.innerHTML = "Spieler " + _numPlayers;
+                                  
+        let points: HTMLParagraphElement = document.createElement("p");
+        playerDiv.appendChild(points);
+        points.innerHTML = "Punkte: 00";        
+    } 
 }
 document.addEventListener("DOMContentLoaded", main);
 }
