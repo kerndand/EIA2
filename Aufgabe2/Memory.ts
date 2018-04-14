@@ -1,13 +1,20 @@
+/*
+Aufgabe: 3 : DynHTML - Memory
+Name: Daniel Kern   
+Matrikel: 257171
+Datum: 14.04.18
+    
+Hiermit versichere ich, dass ich diesen Code (in Kooperation mit Maxim Schlegel) selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
 namespace Aufgabe2 {
 
+//Variablen deklarieren
 let numPairs: number;
 let numPlayers: number = 1;
 let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let cardArray: HTMLElement[] = []; 
 
-
-    
-    
+//Objekt für Karte
 class Card {
     cardContent: string;
     cardStatus: string;
@@ -15,7 +22,8 @@ class Card {
       
     constructor (_cardContent: string) {
         this.cardContent = _cardContent;
-         
+
+//Random Zuweisung der Kartenstati
         let randomStatus: number = Math.random() * 101;
                 
         if (randomStatus <= 55) {
@@ -25,7 +33,9 @@ class Card {
         }else if (randomStatus > 77) {
             this.cardStatus = "open";
         }
-    }     
+    }  
+
+//Karte initialisieren     
     createCard(): HTMLElement[] {
         this.card = document.createElement("div");
         this.card.innerText = this.cardContent;
@@ -46,13 +56,16 @@ class Card {
     return _array;
 }
 
+// Main Funktion zum Anzeigen der Spielerinfo und dem Memory
 function main(): void {
-   
+
+//Popup für Kartenpaare
     numPairs = parseInt(prompt("Anzahl der Kartenpaare (von 5-8 Paaren)"), 10);
     if (numPairs < 5 || numPairs > 8) { 
         numPairs = 8;
     }
-    
+
+//Karten erzeugen
     for (let i: number = 0; i < numPairs; i++) {
     let card: Card = new Card(cardContent[i]);
     card.createCard();
@@ -60,14 +73,20 @@ function main(): void {
     let pair: Card = new Card(cardContent[i]);
     pair.createCard();
     }
-    
+
+//Aufruf der Shuffle Algorithmusses    
     shuffleArray(cardArray);
     
     for (let i: number = 0; i < cardArray.length; i++) {
-      document.getElementById("mittig").appendChild(cardArray[i]);
+      document.getElementById("playerbox").appendChild(cardArray[i]);
     }
+
+//Spielerinformation
     
+//Popup für Spieleranzahl
     let eingabeSpieler: string = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
+
+//Initialisierung der verschiedenen Fälle der Spieleranzahl
     switch (eingabeSpieler) {
             case "1": 
                 numPlayers += 1;
@@ -92,7 +111,8 @@ function main(): void {
     for ( let i: number = 1; i < numPlayers; i++) {
         spielerDiv(i);
     }     
-            
+
+//Anzeigen der Spielerboxen
     function spielerDiv(_numPlayers: number): void {
                     
         let playerDiv: HTMLDivElement = document.createElement("div");
@@ -107,5 +127,6 @@ function main(): void {
         points.innerHTML = "Punkte: 00";        
     } 
 }
+//Event-Listener
 document.addEventListener("DOMContentLoaded", main);
 }
