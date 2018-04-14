@@ -47,24 +47,19 @@ namespace Aufgabe2 {
             let playerDiv: HTMLDivElement = document.createElement("div");
             document.body.appendChild(playerDiv);
                     
-            let stylePlayerBox: CSSStyleDeclaration = playerDiv.style;
-            stylePlayerBox.backgroundColor = "lightgray";
-            stylePlayerBox.maxWidth = "20%";
-            stylePlayerBox.overflow = "hidden";
+            
             
             let player: HTMLParagraphElement = document.createElement("p");
             playerDiv.appendChild(player);
             player.innerHTML = "Spieler " + _numPlayers;
             
-            let stylePlayer: CSSStyleDeclaration = player.style;
-            stylePlayer.textAlign = "center";
+            
         
             let points: HTMLParagraphElement = document.createElement("p");
             playerDiv.appendChild(points);
             points.innerHTML = "Punkte: 00";
         
-            let stylePoints: CSSStyleDeclaration = points.style;
-            stylePoints.textAlign = "center";
+          
     }
     
 // Memory

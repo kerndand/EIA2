@@ -1,3 +1,11 @@
+/*
+Aufgabe: 2 : DynHTML - Memory
+Name: Daniel Kern
+Matrikel: 257171
+Datum: 13.04.18
+    
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
 var Aufgabe2;
 (function (Aufgabe2) {
     let numPlayers = 1;
@@ -28,20 +36,12 @@ var Aufgabe2;
     function spielerDiv(_numPlayers) {
         let playerDiv = document.createElement("div");
         document.body.appendChild(playerDiv);
-        let stylePlayerBox = playerDiv.style;
-        stylePlayerBox.backgroundColor = "lightgray";
-        stylePlayerBox.maxWidth = "20%";
-        stylePlayerBox.overflow = "hidden";
         let player = document.createElement("p");
         playerDiv.appendChild(player);
         player.innerHTML = "Spieler " + _numPlayers;
-        let stylePlayer = player.style;
-        stylePlayer.textAlign = "center";
         let points = document.createElement("p");
         playerDiv.appendChild(points);
         points.innerHTML = "Punkte: 00";
-        let stylePoints = points.style;
-        stylePoints.textAlign = "center";
     }
 })(Aufgabe2 || (Aufgabe2 = {}));
 //# sourceMappingURL=Aufgabe2.js.map
