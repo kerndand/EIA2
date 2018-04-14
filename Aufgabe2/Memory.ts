@@ -6,6 +6,7 @@ Datum: 14.04.18
     
 Hiermit versichere ich, dass ich diesen Code (in Kooperation mit Maxim Schlegel) selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
+
 namespace Aufgabe2 {
 
 //Variablen deklarieren
