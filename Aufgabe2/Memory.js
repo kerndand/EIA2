@@ -51,9 +51,12 @@ var Aufgabe2;
     // Main Funktion zum Anzeigen der Spielerinfo und dem Memory
     function main() {
         //Popup f�r Kartenpaare
-        numPairs = parseInt(prompt("Anzahl der Kartenpaare (von 5-8 Paaren)"), 10);
-        if (numPairs < 5 || numPairs > 8) {
-            numPairs = 8;
+        gameBoard();
+        function gameBoard() {
+            numPairs = parseInt(prompt("Anzahl der Kartenpaare (von 5-8 Paaren)"), 10);
+            if (numPairs < 5 || numPairs > 8) {
+                gameBoard();
+            }
         }
         //Karten erzeugen
         for (let i = 0; i < numPairs; i++) {
@@ -69,26 +72,29 @@ var Aufgabe2;
         }
         //Spielerinformation
         //Popup f�r Spieleranzahl
-        let eingabeSpieler = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
-        //Initialisierung der verschiedenen F�lle der Spieleranzahl
-        switch (eingabeSpieler) {
-            case "1":
-                numPlayers += 1;
-                break;
-            case "2":
-                numPlayers += 2;
-                break;
-            case "3":
-                numPlayers += 3;
-                break;
-            case "4":
-                numPlayers += 4;
-                break;
-            default:
-                location.reload();
-        }
-        for (let i = 1; i < numPlayers; i++) {
-            spielerDiv(i);
+        playerList();
+        function playerList() {
+            let eingabeSpieler = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
+            //Initialisierung der verschiedenen F�lle der Spieleranzahl
+            switch (eingabeSpieler) {
+                case "1":
+                    numPlayers += 1;
+                    break;
+                case "2":
+                    numPlayers += 2;
+                    break;
+                case "3":
+                    numPlayers += 3;
+                    break;
+                case "4":
+                    numPlayers += 4;
+                    break;
+                default:
+                    playerList();
+            }
+            for (let i = 1; i < numPlayers; i++) {
+                spielerDiv(i);
+            }
         }
         //Anzeigen der Spielerboxen
         function spielerDiv(_numPlayers) {
