@@ -28,8 +28,6 @@ function randomStatus(): string {
     }
     } 
     
-
-
 //Karte initialisieren     
 function createCard(_cardContent: string, _status: string): void {
         let card: HTMLElement = document.createElement("div");
