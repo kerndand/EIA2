@@ -13,30 +13,25 @@ var Aufgabe2;
     let numPlayers = 1;
     let cardContent = ["A", "B", "C", "D", "E", "F", "G", "H"];
     let cardArray = [];
-    //Objekt f�r Karte
-    class Card {
-        constructor(_cardContent) {
-            this.cardContent = _cardContent;
-            //Random Zuweisung der Kartenstati
-            let randomStatus = Math.random() * 101;
-            if (randomStatus <= 55) {
-                this.cardStatus = "hidden";
-            }
-            else if (randomStatus > 55 && randomStatus <= 77) {
-                this.cardStatus = "taken";
-            }
-            else if (randomStatus > 77) {
-                this.cardStatus = "open";
-            }
+    //Random Zuweisung der Kartenstati
+    function randomStatus() {
+        let randomStatus = Math.random() * 101;
+        if (randomStatus <= 55) {
+            return "hidden";
         }
-        //Karte initialisieren     
-        createCard() {
-            this.card = document.createElement("div");
-            this.card.innerText = this.cardContent;
-            this.card.setAttribute("class", "card " + this.cardStatus);
-            cardArray.push(this.card);
-            return cardArray;
+        else if (randomStatus > 55 && randomStatus <= 77) {
+            return "taken";
         }
+        else if (randomStatus > 77) {
+            return "open";
+        }
+    }
+    //Karte initialisieren     
+    function createCard(_cardContent, _status) {
+        let card = document.createElement("div");
+        card.innerText = _cardContent;
+        card.setAttribute("class", "card " + _status);
+        cardArray.push(card);
     }
     //Durstenfeld-Shuffle
     function shuffleArray(_array) {
@@ -60,10 +55,8 @@ var Aufgabe2;
         }
         //Karten erzeugen
         for (let i = 0; i < numPairs; i++) {
-            let card = new Card(cardContent[i]);
-            card.createCard();
-            let pair = new Card(cardContent[i]);
-            pair.createCard();
+            createCard(cardContent[i], randomStatus());
+            createCard(cardContent[i], randomStatus());
         }
         //Aufruf der Shuffle Algorithmusses    
         shuffleArray(cardArray);
@@ -111,4 +104,4 @@ var Aufgabe2;
     //Event-Listener
     document.addEventListener("DOMContentLoaded", main);
 })(Aufgabe2 || (Aufgabe2 = {}));
-//# sourceMappingURL=Memory.js.map
+//# sourceMappingURL=Aufgabe2.js.map

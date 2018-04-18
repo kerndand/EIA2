@@ -6,44 +6,36 @@ Datum: 14.04.18
     
 Hiermit versichere ich, dass ich diesen Code (in Kooperation mit Maxim Schlegel) selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
-
 namespace Aufgabe2 {
-
 //Variablen deklarieren
 let numPairs: number;
 let numPlayers: number = 1;
 let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let cardArray: HTMLElement[] = []; 
 
-//Objekt für Karte
-class Card {
-    cardContent: string;
-    cardStatus: string;
-    card: HTMLElement;
-      
-    constructor (_cardContent: string) {
-        this.cardContent = _cardContent;
 
 //Random Zuweisung der Kartenstati
-        let randomStatus: number = Math.random() * 101;
+function randomStatus(): string {      
+        
+    let randomStatus: number = Math.random() * 101;
                 
-        if (randomStatus <= 55) {
-            this.cardStatus = "hidden";
-        } else if (randomStatus > 55 && randomStatus <= 77) {
-            this.cardStatus = "taken";
-        }else if (randomStatus > 77) {
-            this.cardStatus = "open";
-        }
-    }  
+    if (randomStatus <= 55) {
+        return "hidden";
+    } else if (randomStatus > 55 && randomStatus <= 77) {
+        return "taken";
+    } else if (randomStatus > 77) {
+        return "open";
+    }
+    } 
+    
+
 
 //Karte initialisieren     
-    createCard(): HTMLElement[] {
-        this.card = document.createElement("div");
-        this.card.innerText = this.cardContent;
-        this.card.setAttribute("class", "card " + this.cardStatus);
-        cardArray.push(this.card);
-        return cardArray;
-    }
+function createCard(_cardContent: string, _status: string): void {
+        let card: HTMLElement = document.createElement("div");
+        card.innerText = _cardContent;
+        card.setAttribute("class", "card " + _status);
+        cardArray.push(card);
 }
 
 //Durstenfeld-Shuffle
@@ -70,12 +62,9 @@ function main(): void {
     }    
 //Karten erzeugen
     for (let i: number = 0; i < numPairs; i++) {
-    let card: Card = new Card(cardContent[i]);
-    card.createCard();
-
-    let pair: Card = new Card(cardContent[i]);
-    pair.createCard();
-    }
+        createCard(cardContent[i], randomStatus());
+        createCard(cardContent[i], randomStatus());
+}
 
 //Aufruf der Shuffle Algorithmusses    
     shuffleArray(cardArray);
@@ -83,7 +72,7 @@ function main(): void {
     for (let i: number = 0; i < cardArray.length; i++) {
       document.getElementById("playerbox").appendChild(cardArray[i]);
     }
-
+ 
 //Spielerinformation
     
 //Popup für Spieleranzahl
@@ -117,7 +106,7 @@ function main(): void {
         for ( let i: number = 1; i < numPlayers; i++) {
             spielerDiv(i);
         }
-}     
+    }        
 
 //Anzeigen der Spielerboxen
     function spielerDiv(_numPlayers: number): void {
@@ -133,7 +122,7 @@ function main(): void {
         playerDiv.appendChild(points);
         points.innerHTML = "Punkte: 00";        
     } 
-}
+}    
 //Event-Listener
 document.addEventListener("DOMContentLoaded", main);
 }
