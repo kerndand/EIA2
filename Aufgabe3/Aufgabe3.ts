@@ -13,7 +13,8 @@ let numPlayers: number = 1;
 let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let cardArray: HTMLElement[] = []; 
 let cardsOpen: number = 0;
-let cardsOpenArray: HTMLElement[] = []; 
+let cardsOpenArray: HTMLElement[] = [];
+let cardRest: HTMLElement[] = [];   
     
 //Karte initialisieren     
 function createCard(_cardContent: string): void {
@@ -40,7 +41,7 @@ function clickHandler(_event: Event): void {
     } 
 }
 
-
+    
    
 function compareCards(): void {
     if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {

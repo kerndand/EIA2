@@ -15,6 +15,7 @@ var Aufgabe2;
     let cardArray = [];
     let cardsOpen = 0;
     let cardsOpenArray = [];
+    let cardRest = [];
     //Karte initialisieren     
     function createCard(_cardContent) {
         let card = document.createElement("div");
