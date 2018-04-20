@@ -15,45 +15,54 @@ var Aufgabe2;
     let cardArray = [];
     let cardsOpen = 0;
     let cardsOpenArray = [];
-    let cardRest = [];
+    let checkRest = [];
     //Karte initialisieren     
     function createCard(_cardContent) {
         let card = document.createElement("div");
         card.innerHTML = "<p>" + _cardContent + "</p>";
         card.setAttribute("class", "card hidden");
         cardArray.push(card);
+        checkRest.push(card);
         card.addEventListener("click", clickHandler);
     }
     function clickHandler(_event) {
         let target = _event.target;
         if (target.classList.contains("card")) {
             cardsOpen++;
-            if (cardsOpen > 2) {
+            if (!(cardsOpen > 2)) {
                 if (target.classList.contains("hidden")) {
                     target.classList.remove("hidden");
                     target.classList.add("open");
                     cardsOpenArray.push(target);
                 }
             }
-            else if (cardsOpen == 2) {
+            if (cardsOpen == 2) {
                 setTimeout(compareCards, 2000);
             }
         }
     }
     function compareCards() {
         if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < cardsOpenArray.length; i++) {
                 cardsOpenArray[i].classList.remove("open");
                 cardsOpenArray[i].classList.add("taken");
             }
+            checkRest.splice(0, 2);
         }
         else {
-            for (let i = 0; i < 2; i++) {
+            for (let i = 0; i < cardsOpenArray.length; i++) {
                 cardsOpenArray[i].classList.remove("open");
                 cardsOpenArray[i].classList.add("hidden");
             }
         }
         cardsOpenArray = [];
+        cardsOpen = 0;
+        checkWin();
+    }
+    function checkWin() {
+        if (checkRest.length == 0) {
+            alert("Herzlichen Gl\u00fcckwunsch, du hast gewonnen!");
+        }
     }
     //Durstenfeld-Shuffle
     function shuffleArray(_array) {

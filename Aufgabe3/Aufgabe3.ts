@@ -14,7 +14,7 @@ let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let cardArray: HTMLElement[] = []; 
 let cardsOpen: number = 0;
 let cardsOpenArray: HTMLElement[] = [];
-let cardRest: HTMLElement[] = [];   
+let checkRest: HTMLElement[] = [];   
     
 //Karte initialisieren     
 function createCard(_cardContent: string): void {
@@ -22,43 +22,50 @@ function createCard(_cardContent: string): void {
         card.innerHTML = "<p>" + _cardContent + "</p>";
         card.setAttribute("class", "card hidden");
         cardArray.push(card);
-        card.addEventListener("click", clickHandler);
+        checkRest.push(card);
+        card.addEventListener("click", clickHandler);      
 }
-    
+
 function clickHandler(_event: Event): void {
     let target: HTMLElement = <HTMLElement>_event.target;
     if (target.classList.contains("card")) {
         cardsOpen++;
-        if (cardsOpen > 2) {
+        if (!(cardsOpen > 2)) {
             if (target.classList.contains("hidden")) {
             target.classList.remove("hidden");
             target.classList.add("open");
             cardsOpenArray.push(target);
             }  
-        } else if (cardsOpen == 2) {
+        }
+        if (cardsOpen == 2) {
             setTimeout(compareCards, 2000);    
         }
     } 
-}
-
-    
+}  
    
 function compareCards(): void {
     if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {
-        for (let i: number = 0; i < 2; i++) {
+        for (let i: number = 0; i < cardsOpenArray.length; i++) {
             cardsOpenArray[i].classList.remove("open");
             cardsOpenArray[i].classList.add("taken");
         }
+        checkRest.splice(0, 2);
     } else {
-        for (let i: number = 0; i < 2; i++) {
+        for (let i: number = 0; i < cardsOpenArray.length; i++) {
             cardsOpenArray[i].classList.remove("open");
             cardsOpenArray[i].classList.add("hidden");    
         }
     }
-    cardsOpenArray = [];   
+    cardsOpenArray = [];
+    cardsOpen = 0;
+    checkWin();  
 }
 
-
+function checkWin(): void {
+    if (checkRest.length == 0) {
+        alert("Herzlichen Gl\u00fcckwunsch, du hast gewonnen!");    
+    }   
+}
 
 //Durstenfeld-Shuffle
     function shuffleArray(_array: any[]): any[] {
