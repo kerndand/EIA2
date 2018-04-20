@@ -31,15 +31,14 @@ var Aufgabe2;
                 if (target.classList.contains("hidden")) {
                     target.classList.remove("hidden");
                     target.classList.add("open");
-                    if (target.classList.contains("open")) {
-                        cardsOpenArray.push(this);
-                    }
+                    cardsOpenArray.push(target);
                 }
             }
             else if (cardsOpen == 2) {
                 setTimeout(compareCards(), 2000);
             }
         }
+        console.log(cardsOpenArray[0]);
     }
     function compareCards() {
         if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {
@@ -47,15 +46,14 @@ var Aufgabe2;
                 cardsOpenArray[i].classList.remove("open");
                 cardsOpenArray[i].classList.add("taken");
             }
-            cardsOpenArray.splice(0, 2);
         }
         else {
             for (let i = 0; i < 2; i++) {
                 cardsOpenArray[i].classList.remove("open");
                 cardsOpenArray[i].classList.add("hidden");
             }
-            cardsOpenArray.splice(0, 2);
         }
+        cardsOpenArray = [];
     }
     //Durstenfeld-Shuffle
     function shuffleArray(_array) {
