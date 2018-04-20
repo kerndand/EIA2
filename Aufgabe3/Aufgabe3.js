@@ -14,6 +14,7 @@ var Aufgabe2;
     let cardContent = ["A", "B", "C", "D", "E", "F", "G", "H"];
     let cardArray = [];
     let cardsOpen = 0;
+    let cardsOpenArray = [];
     //Karte initialisieren     
     function createCard(_cardContent) {
         let card = document.createElement("div");
@@ -22,7 +23,6 @@ var Aufgabe2;
         cardArray.push(card);
         card.addEventListener("click", clickHandler);
     }
-    let cardsOpenArray = [];
     function clickHandler(_event) {
         let target = _event.target;
         if (target.classList.contains("card")) {
@@ -31,10 +31,31 @@ var Aufgabe2;
                 if (target.classList.contains("hidden")) {
                     target.classList.remove("hidden");
                     target.classList.add("open");
+                    if (target.classList.contains("open")) {
+                        cardsOpenArray.push(this);
+                    }
                 }
             }
+            else if (cardsOpen == 2) {
+                setTimeout(compareCards(), 2000);
+            }
         }
-        console.log(cardsOpenArray);
+    }
+    function compareCards() {
+        if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {
+            for (let i = 0; i < 2; i++) {
+                cardsOpenArray[i].classList.remove("open");
+                cardsOpenArray[i].classList.add("taken");
+            }
+            cardsOpenArray.splice(0, 2);
+        }
+        else {
+            for (let i = 0; i < 2; i++) {
+                cardsOpenArray[i].classList.remove("open");
+                cardsOpenArray[i].classList.add("hidden");
+            }
+            cardsOpenArray.splice(0, 2);
+        }
     }
     //Durstenfeld-Shuffle
     function shuffleArray(_array) {
