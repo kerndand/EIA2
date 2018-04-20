@@ -17,23 +17,24 @@ var Aufgabe2;
     //Karte initialisieren     
     function createCard(_cardContent) {
         let card = document.createElement("div");
-        card.innerHTML = "<p>_cardContent</p>";
+        card.innerHTML = "<p>" + _cardContent + "</p>";
         card.setAttribute("class", "card hidden");
         cardArray.push(card);
         card.addEventListener("click", clickHandler);
     }
+    let cardsOpenArray = [];
     function clickHandler(_event) {
-        //    if (_event.target.classList.contains("card")) {
-        //        cardsOpen++;
-        //        if (cardsOpen > 2) {
-        //            if (_event.target.classList.contains("hidden")) {
-        //            _event.target.classList.remove("hidden");
-        //            _event.target.classList.add("open");
-        //            }
-        //                
-        //        }    
-        //    }
-        console.log(_event.target);
+        let target = _event.target;
+        if (target.classList.contains("card")) {
+            cardsOpen++;
+            if (cardsOpen < 3) {
+                if (target.classList.contains("hidden")) {
+                    target.classList.remove("hidden");
+                    target.classList.add("open");
+                }
+            }
+        }
+        console.log(cardsOpenArray);
     }
     //Durstenfeld-Shuffle
     function shuffleArray(_array) {

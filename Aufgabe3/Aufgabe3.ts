@@ -17,24 +17,22 @@ let cardsOpen: number = 0;
 //Karte initialisieren     
 function createCard(_cardContent: string): void {
         let card: HTMLElement = document.createElement("div");
-        card.innerHTML = "<p>_cardContent</p>";
+        card.innerHTML = "<p>" + _cardContent + "</p>";
         card.setAttribute("class", "card hidden");
         cardArray.push(card);
         card.addEventListener("click", clickHandler);
 }
-
+    
 function clickHandler(_event: Event): void {
-//    if (_event.target.classList.contains("card")) {
-//        cardsOpen++;
-//        if (cardsOpen > 2) {
-//            if (_event.target.classList.contains("hidden")) {
-//            _event.target.classList.remove("hidden");
-//            _event.target.classList.add("open");
-//            }
-//                
-//        }    
-//    }
-    console.log(_event.target);
+    if (_event.target.classList.contains("card")) {
+        cardsOpen++;
+        if (cardsOpen < 3) {
+            if (_event.target.classList.contains("hidden")) {
+            _event.target.classList.remove("hidden");
+            _event.target.classList.add("open");
+            }      
+        }    
+    }
 }
 
 
@@ -51,7 +49,7 @@ function clickHandler(_event: Event): void {
 
 // Main Funktion zum Anzeigen der Spielerinfo und dem Memory
 function main(): void {
-
+    
 //Popup für Kartenpaare
     gameBoard();
     function gameBoard(): void {
