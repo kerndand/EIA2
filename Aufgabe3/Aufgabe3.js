@@ -27,7 +27,7 @@ var Aufgabe2;
         let target = _event.target;
         if (target.classList.contains("card")) {
             cardsOpen++;
-            if (cardsOpen < 3) {
+            if (cardsOpen > 2) {
                 if (target.classList.contains("hidden")) {
                     target.classList.remove("hidden");
                     target.classList.add("open");
@@ -35,10 +35,9 @@ var Aufgabe2;
                 }
             }
             else if (cardsOpen == 2) {
-                setTimeout(compareCards(), 2000);
+                setTimeout(compareCards, 2000);
             }
         }
-        console.log(cardsOpenArray[0]);
     }
     function compareCards() {
         if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {

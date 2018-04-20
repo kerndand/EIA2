@@ -13,8 +13,7 @@ let numPlayers: number = 1;
 let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let cardArray: HTMLElement[] = []; 
 let cardsOpen: number = 0;
-let cardsOpenArray: HTMLElement[] = [];
-    
+let cardsOpenArray: HTMLElement[] = []; 
     
 //Karte initialisieren     
 function createCard(_cardContent: string): void {
@@ -29,20 +28,19 @@ function clickHandler(_event: Event): void {
     let target: HTMLElement = <HTMLElement>_event.target;
     if (target.classList.contains("card")) {
         cardsOpen++;
-        if (cardsOpen < 3) {
+        if (cardsOpen > 2) {
             if (target.classList.contains("hidden")) {
             target.classList.remove("hidden");
             target.classList.add("open");
             cardsOpenArray.push(target);
             }  
         } else if (cardsOpen == 2) {
-            setTimeout(compareCards(), 2000);    
+            setTimeout(compareCards, 2000);    
         }
     } 
-    console.log(cardsOpenArray[0]) 
 }
 
-    
+
    
 function compareCards(): void {
     if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {
@@ -56,9 +54,8 @@ function compareCards(): void {
             cardsOpenArray[i].classList.add("hidden");    
         }
     }
-    cardsOpenArray = [];
+    cardsOpenArray = [];   
 }
-
 
 
 
