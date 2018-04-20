@@ -1,13 +1,13 @@
 /*
-Aufgabe: 3 : Evemt - Memory
+Aufgabe: 3 : Event - Memory
 Name: Daniel Kern
 Matrikel: 257171
-Datum: 20.04.18
+Datum: 21.04.18
     
 Hiermit versichere ich, dass ich diesen Code (in Kooperation mit Maxim Schlegel) selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
-var Aufgabe2;
-(function (Aufgabe2) {
+var Aufgabe3;
+(function (Aufgabe3) {
     //Variablen deklarieren
     let numPairs;
     let numPlayers = 1;
@@ -134,5 +134,5 @@ var Aufgabe2;
     }
     //Event-Listener
     document.addEventListener("DOMContentLoaded", main);
-})(Aufgabe2 || (Aufgabe2 = {}));
+})(Aufgabe3 || (Aufgabe3 = {}));
 //# sourceMappingURL=Aufgabe3.js.map
