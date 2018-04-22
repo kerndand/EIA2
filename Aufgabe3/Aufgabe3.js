@@ -10,7 +10,7 @@ var Aufgabe3;
 (function (Aufgabe3) {
     //Variablen deklarieren
     let numPairs;
-    let numPlayers = 1;
+    let numPlayers = 0;
     let cardContent = ["A", "B", "C", "D", "E", "F", "G", "H"];
     let cardArray = [];
     let cardsOpen = 0;
@@ -102,22 +102,22 @@ var Aufgabe3;
             //Initialisierung der verschiedenen F�lle der Spieleranzahl
             switch (eingabeSpieler) {
                 case "1":
-                    numPlayers += 1;
+                    numPlayers = 1;
                     break;
                 case "2":
-                    numPlayers += 2;
+                    numPlayers = 2;
                     break;
                 case "3":
-                    numPlayers += 3;
+                    numPlayers = 3;
                     break;
                 case "4":
-                    numPlayers += 4;
+                    numPlayers = 4;
                     break;
                 default:
                     playerList();
             }
-            for (let i = 1; i < numPlayers; i++) {
-                spielerDiv(i);
+            for (let i = 0; i < numPlayers; i++) {
+                spielerDiv(i + 1);
             }
         }
         //Anzeigen der Spielerboxen

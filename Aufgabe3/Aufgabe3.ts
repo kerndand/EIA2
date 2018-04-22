@@ -10,7 +10,7 @@ namespace Aufgabe3 {
     
 //Variablen deklarieren
 let numPairs: number;
-let numPlayers: number = 1;
+let numPlayers: number = 0;
 let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let cardArray: HTMLElement[] = []; 
 let cardsOpen: number = 0;
@@ -113,19 +113,19 @@ function main(): void {
     //Initialisierung der verschiedenen Fälle der Spieleranzahl
         switch (eingabeSpieler) {
                 case "1": 
-                    numPlayers += 1;
+                    numPlayers = 1;
                     break; 
                         
                 case "2":
-                    numPlayers += 2;
+                    numPlayers = 2;
                     break;
                         
                 case "3":
-                    numPlayers += 3;
+                    numPlayers = 3;
                     break;
                         
                 case "4":
-                    numPlayers += 4;
+                    numPlayers = 4;
                     break;
                         
                 default: 
@@ -133,8 +133,8 @@ function main(): void {
                 }
     
                 
-        for ( let i: number = 1; i < numPlayers; i++) {
-            spielerDiv(i);
+        for ( let i: number = 0; i < numPlayers; i++) {
+            spielerDiv(i + 1);
         }
     }        
 
@@ -146,7 +146,7 @@ function main(): void {
    
         let player: HTMLParagraphElement = document.createElement("p");
         playerDiv.appendChild(player);
-        player.innerHTML = "Spieler " + _numPlayers;
+        player.innerHTML = "Spieler " + _numPlayers ;
                                   
         let points: HTMLParagraphElement = document.createElement("p");
         playerDiv.appendChild(points);
