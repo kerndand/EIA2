@@ -10,7 +10,7 @@ namespace Aufgabe3 {
     
 //Variablen deklarieren
 let numPairs: number;
-let numPlayers: number = 0;
+let numPlayers: number;
 let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
 let cardArray: HTMLElement[] = []; 
 let cardsOpen: number = 0;
@@ -108,35 +108,15 @@ function main(): void {
 //Popup für Spieleranzahl
     playerList();
     function playerList(): void {
-        let eingabeSpieler: string = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
+        numPlayers = parseInt(prompt("Spieleranzahl eingeben (max. 4 Spieler)"), 10);
+        if (numPlayers < 1 || numPlayers > 4) { 
+            playerList();
+        }      
+    }
     
-    //Initialisierung der verschiedenen Fälle der Spieleranzahl
-        switch (eingabeSpieler) {
-                case "1": 
-                    numPlayers = 1;
-                    break; 
-                        
-                case "2":
-                    numPlayers = 2;
-                    break;
-                        
-                case "3":
-                    numPlayers = 3;
-                    break;
-                        
-                case "4":
-                    numPlayers = 4;
-                    break;
-                        
-                default: 
-                    playerList();
-                }
-    
-                
-        for ( let i: number = 0; i < numPlayers; i++) {
+    for ( let i: number = 0; i < numPlayers; i++) {
             spielerDiv(i + 1);
         }
-    }        
 
 //Anzeigen der Spielerboxen
     function spielerDiv(_numPlayers: number): void {

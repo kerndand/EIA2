@@ -10,7 +10,7 @@ var Aufgabe3;
 (function (Aufgabe3) {
     //Variablen deklarieren
     let numPairs;
-    let numPlayers = 0;
+    let numPlayers;
     let cardContent = ["A", "B", "C", "D", "E", "F", "G", "H"];
     let cardArray = [];
     let cardsOpen = 0;
@@ -98,27 +98,13 @@ var Aufgabe3;
         //Popup f�r Spieleranzahl
         playerList();
         function playerList() {
-            let eingabeSpieler = prompt("Spieleranzahl eingeben (max. 4 Spieler)" + "");
-            //Initialisierung der verschiedenen F�lle der Spieleranzahl
-            switch (eingabeSpieler) {
-                case "1":
-                    numPlayers = 1;
-                    break;
-                case "2":
-                    numPlayers = 2;
-                    break;
-                case "3":
-                    numPlayers = 3;
-                    break;
-                case "4":
-                    numPlayers = 4;
-                    break;
-                default:
-                    playerList();
+            numPlayers = parseInt(prompt("Spieleranzahl eingeben (max. 4 Spieler)"), 10);
+            if (numPlayers < 1 || numPlayers > 4) {
+                playerList();
             }
-            for (let i = 0; i < numPlayers; i++) {
-                spielerDiv(i + 1);
-            }
+        }
+        for (let i = 0; i < numPlayers; i++) {
+            spielerDiv(i + 1);
         }
         //Anzeigen der Spielerboxen
         function spielerDiv(_numPlayers) {
