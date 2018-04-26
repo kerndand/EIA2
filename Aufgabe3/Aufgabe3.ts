@@ -31,13 +31,15 @@ function clickHandler(_event: Event): void {
     let target: HTMLElement = <HTMLElement>_event.target;
     if (target.classList.contains("card")) {
         cardsOpen++;
-        if (!(cardsOpen > 2)) {
+        if (!(cardsOpen > 2) && target.classList.contains("hidden") && target != cardsOpenArray[0]) {
             if (target.classList.contains("hidden")) {
             target.classList.remove("hidden");
             target.classList.add("open");
             cardsOpenArray.push(target);
             }  
-        }
+        } else {
+            cardsOpen--;
+}
         if (cardsOpen == 2) {
             setTimeout(compareCards, 2000);    
         }
@@ -46,7 +48,7 @@ function clickHandler(_event: Event): void {
    
 function compareCards(): void {
     if (cardsOpenArray[0].innerHTML == cardsOpenArray[1].innerHTML) {
-        for (let i: number = 0; i < cardsOpenArray.length; i++) {
+        for (let i: number = 0; i < 2; i++) {
             cardsOpenArray[i].classList.remove("open");
             cardsOpenArray[i].classList.add("taken");
         }
