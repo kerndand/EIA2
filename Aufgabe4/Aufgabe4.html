@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Aufgabe 4 : Memory</title>
+<link href="https://fonts.googleapis.com/css?family=Roboto"
+	rel="stylesheet">
+<link type="text/css" rel="stylesheet" href="Aufgabe4.css">
+<script type="text/javascript" src="Aufgabe4.js"></script>
+<script type="text/javascript" src="Aufgabe4Datenstrukturen.js"></script>
+</head>
+<body>
+	<div id="userinterface">
+		<h2>Bitte Spieleranzahl und Namen eingeben (max. 4 Spieler)</h2>
+		<button id="addplayer">Spieler hinzugügen</button>
+		<button id="removeplayer">Spieler entfernen</button>
+		<div id="playernames">
+			<input type="text" placeholder="Spielernamen eingeben" name="player" maxlength="15"/>
+		</div>
+		<h2>Kartendeck auswählen</h2>
+		<select id="sliderinfo" name="carddeck" onchange="createSlider()">
+			<option disabled selected>Kartendeck wählen</option>
+			<option value="letters">Buchstaben</option>
+			<option value="animals">Tiere</option>
+			<option value="names">Namen</option>
+		</select>
+
+		<h2>Kartenanzahl eingeben</h2>
+		
+		<div id="sliderbox"></div>
+		
+		<button id="start">Los geht's</button>
+	</div>
+
+	<section id="scoreboard">
+		<h2>Scoreboard</h2>
+	</section>
+	<section id="game">
+		<h2>Memory</h2>
+		<div id="playerbox"></div>
+	</section>
+</body>
+</html>
