@@ -153,7 +153,7 @@ namespace Aufgabe4 {
         for (let i: number = 0; i < playerCounter; i++) {
             let playerDiv: HTMLDivElement = document.createElement("div");
             document.getElementById("scoreboard").appendChild(playerDiv);
-            playerDiv.innerHTML = inputs[i].value + ": " + playerPoints + "Punkte";
+            playerDiv.innerHTML = inputs[i].value + ": " + playerPoints + " Punkte";
         }
 
         //Karten erzeugen    
