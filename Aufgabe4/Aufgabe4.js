@@ -10,13 +10,13 @@ var Aufgabe4;
 (function (Aufgabe4) {
     window.addEventListener("load", main);
     //Variablen deklarieren
-    let cardContent = ["A", "B", "C", "D", "E", "F", "G", "H"];
     let cardArray = [];
     let cardsOpen = 0;
     let cardsOpenArray = [];
     let checkRest = [];
     let playerCounter = 1;
     let sliderAmount = 1;
+    let playerPoints = 0;
     function main() {
         document.getElementById("start").addEventListener("click", start);
         document.getElementById("addplayer").addEventListener("click", addPlayer);
@@ -139,7 +139,7 @@ var Aufgabe4;
         for (let i = 0; i < playerCounter; i++) {
             let playerDiv = document.createElement("div");
             document.getElementById("scoreboard").appendChild(playerDiv);
-            playerDiv.innerHTML = inputs[i].value + ": 0 Punkte";
+            playerDiv.innerHTML = inputs[i].value + ": " + playerPoints + "Punkte";
         }
         //Karten erzeugen    
         for (let i = 0; i < numPairs; i++) {

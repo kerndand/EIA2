@@ -11,13 +11,13 @@ namespace Aufgabe4 {
 
 
     //Variablen deklarieren
-    let cardContent: string[] = ["A", "B", "C", "D", "E", "F", "G", "H"];
     let cardArray: HTMLElement[] = [];
     let cardsOpen: number = 0;
     let cardsOpenArray: HTMLElement[] = [];
     let checkRest: HTMLElement[] = [];
     let playerCounter: number = 1;
     let sliderAmount: number = 1;
+    let playerPoints: number = 0;
 
     function main(): void {
         document.getElementById("start").addEventListener("click", start);
@@ -153,7 +153,7 @@ namespace Aufgabe4 {
         for (let i: number = 0; i < playerCounter; i++) {
             let playerDiv: HTMLDivElement = document.createElement("div");
             document.getElementById("scoreboard").appendChild(playerDiv);
-            playerDiv.innerHTML = inputs[i].value + ": 0 Punkte";
+            playerDiv.innerHTML = inputs[i].value + ": " + playerPoints + "Punkte";
         }
 
         //Karten erzeugen    

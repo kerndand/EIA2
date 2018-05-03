@@ -9,7 +9,6 @@ namespace Aufgabe4 {
 
     let deck: Card;
 
-
     export interface Cards {
         [cardName: string]: Card;
     };
@@ -38,5 +37,12 @@ namespace Aufgabe4 {
         cardAmount: "16"
     };
     cards["names"] = deck;
-
+    
+    
+    export interface Scoreboard {
+        player: string;
+        score: number;    
+    }
+    
+    let scoreboard: Scoreboard[] = [];
 }

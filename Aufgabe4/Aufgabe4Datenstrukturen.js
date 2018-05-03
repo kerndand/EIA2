@@ -24,5 +24,6 @@ var Aufgabe4;
         cardAmount: "16"
     };
     Aufgabe4.cards["names"] = deck;
+    let scoreboard = [];
 })(Aufgabe4 || (Aufgabe4 = {}));
 //# sourceMappingURL=Aufgabe4Datenstrukturen.js.map
