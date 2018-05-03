@@ -21,7 +21,7 @@ namespace Aufgabe4 {
         cardAmount: "8"
     };
     cards["letters"] = deck;
-    
+
     deck = {
         cardContent: ["Hund", "Katze", "Maus", "Pferd", "Krake", "Affe", "Reh", "Kuh", "Schwein", "Luchs", "Huhn", "L\u00f6we", "Tiger"],
         cardColor: "blue",
@@ -29,7 +29,7 @@ namespace Aufgabe4 {
         cardAmount: "13"
     };
     cards["animals"] = deck;
-   
+
     deck = {
         cardContent: ["Peter", "Gisela", "Hans", "Gudrun", "Fritz", "Walter", "Horst", "Sabine", "Achim", "Elsa", "Mick", "Heidi", "Franz", "Frieda", "Karl", "Vera"],
         cardColor: "yellow",
@@ -37,12 +37,12 @@ namespace Aufgabe4 {
         cardAmount: "16"
     };
     cards["names"] = deck;
-    
-    
+
+
     export interface Scoreboard {
         player: string;
-        score: number;    
+        score: number;
     }
-    
+
     let scoreboard: Scoreboard[] = [];
 }

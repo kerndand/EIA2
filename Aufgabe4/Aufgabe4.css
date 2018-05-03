@@ -8,7 +8,7 @@ body {
 h2 {
 	text-align: center;
 	font-size: 2em;
-	color: white;	
+	color: white;
 }
 
 /* Userinterface */
@@ -39,12 +39,12 @@ h2 {
 	color: black;
 }
 
-#playernames input{
+#playernames input {
 	margin-top: 20px;
 	display: block;
 }
 
-#sliderbox{
+#sliderbox {
 	color: white;
 }
 
