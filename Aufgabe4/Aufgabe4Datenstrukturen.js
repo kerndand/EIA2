@@ -11,7 +11,7 @@ var Aufgabe4;
     };
     Aufgabe4.cards["letters"] = deck;
     deck = {
-        cardContent: ["Hund", "Katze", "Maus", "Pferd", "Krake", "Affe", "Reh", "Kuh", "Schwein", "Luchs", "Huhn", "L\u00f6we", "Tiger"],
+        cardContent: ["Hund", "Katze", "Maus", "Pferd", "Krake", "Affe", "Reh", "Kuh", "Vogel", "Luchs", "Huhn", "L\u00f6we", "Tiger"],
         cardColor: "blue",
         cardFont: "sans-serif",
         cardAmount: "13"
