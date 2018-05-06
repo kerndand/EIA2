@@ -33,14 +33,16 @@ namespace Aufgabe4 {
             player.setAttribute("placeholder", "Spielernamen eingeben");
             player.setAttribute("name", "player");
             player.setAttribute("maxlength", "15");
-            player.setAttribute("id", "player");
+            player.setAttribute("class", "player");
             document.getElementById("playernames").appendChild(player);
             playerCounter++;
         }
     }
 
     function removePlayer(): void {
-        document.getElementById("player").remove();
+        let allPlayer: NodeListOf<Element> = document.getElementsByClassName("player");
+        let lastPlayer: HTMLInputElement = <HTMLInputElement>allPlayer[allPlayer.length - 1];
+        lastPlayer.remove();
         playerCounter--;
     }
 

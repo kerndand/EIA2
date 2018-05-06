@@ -30,13 +30,15 @@ var Aufgabe4;
             player.setAttribute("placeholder", "Spielernamen eingeben");
             player.setAttribute("name", "player");
             player.setAttribute("maxlength", "15");
-            player.setAttribute("id", "player");
+            player.setAttribute("class", "player");
             document.getElementById("playernames").appendChild(player);
             playerCounter++;
         }
     }
     function removePlayer() {
-        document.getElementById("player").remove();
+        let allPlayer = document.getElementsByClassName("player");
+        let lastPlayer = allPlayer[allPlayer.length - 1];
+        lastPlayer.remove();
         playerCounter--;
     }
     function createSlider() {
