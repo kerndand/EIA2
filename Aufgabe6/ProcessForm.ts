@@ -1,9 +1,10 @@
-namespace L04_Interfaces {
+namespace Aufgabe6 {
     window.addEventListener("load", init);
- 
+    let address: string = "http://localhost:8200";
+
     let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
-  
-    
+
+
     function init(_event: Event): void {
         console.log("Init");
         let insertButton: HTMLButtonElement = <HTMLButtonElement>document.getElementById("insert");
@@ -12,7 +13,6 @@ namespace L04_Interfaces {
         insertButton.addEventListener("click", insert);
         refreshButton.addEventListener("click", refresh);
         searchButton.addEventListener("click", search);
-
     }
 
     function insert(_event: Event): void {
@@ -27,54 +27,37 @@ namespace L04_Interfaces {
             gender: genderButton.checked,
             studiengang: document.getElementsByTagName("select").item(0).value
         };
+        let convert: string = JSON.stringify(studi);
+        console.log(convert);
 
-        console.log(studi);
-        console.log(studi.age);
-        console.log(studi["age"]);
-
-        // Datensatz im assoziativen Array unter der Matrikelnummer speichern
-        studiHomoAssoc[matrikel] = studi;
-
-        // nur um das auch noch zu zeigen...
-        studiSimpleArray.push(studi);
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=insert&data=" + convert, true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
     }
+
+    function handleStateChangeInsert(_event: ProgressEvent): void {
+        var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.response);
+        }
+    }
+
 
     function refresh(_event: Event): void {
-        let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
-        output.value = "";
-        // for-in-Schleife iteriert über die Schlüssel des assoziativen Arrays
-        for (let matrikel in studiHomoAssoc) {  // Besonderheit: Type-Annotation nicht erlaubt, ergibt sich aus der Interface-Definition
-            let studi: Studi = studiHomoAssoc[matrikel];
-            let line: string = matrikel + ": ";
-            line += studi.studiengang + ", " + studi.name + ", " + studi.firstname + ", " + studi.age + " Jahre ";
-            line += studi.gender ? "(M)" : "(F)";
-            output.value += line + "\n";
-        }
-    }
+        let xhr1: XMLHttpRequest = new XMLHttpRequest();
+        xhr1.open("GET", address + "?command=refresh", true);
+        xhr1.addEventListener("readystatechange", handleStateChangeRefresh);
+        xhr1.send();
+    }    
     
-   function search(_event: Event): void {
-        let mtrkl: string = inputs[6].value;
-        let studi: Studi = studiHomoAssoc[mtrkl];
-        let output2: HTMLTextAreaElement = document.getElementsByTagName("textarea")[1];
-        if (studi) {
-            let line: string = mtrkl + ": ";
-            line += studi.studiengang + ", " + studi.name + ", " + studi.firstname + ", " + studi.age + " Jahre ";
-            line += studi.gender ? "(M)" : "(F)";
-                
-            output2.value = line;
-        } else {
-            output2.value = "No Match";
+    function handleStateChangeRefresh(_event: ProgressEvent): void {
+            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
+            output.value = "";
+            var xhr1: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+            if (xhr1.readyState == XMLHttpRequest.DONE) {
+                let data: string = xhr1.response.toString();
+                output.value += "Studi" + data + "\n";
+            }
         }
-         
-    }
-
-        // zusätzliche Konsolenausgaben zur Demonstration
-        console.group("Simple Array");
-        console.log(studiSimpleArray);
-        console.groupEnd();
-
-        console.group("Associatives Array (Object)");
-        console.log(studiHomoAssoc);
-        console.groupEnd();
-   
 }

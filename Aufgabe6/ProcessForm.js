@@ -1,6 +1,7 @@
-var L04_Interfaces;
-(function (L04_Interfaces) {
+var Aufgabe6;
+(function (Aufgabe6) {
     window.addEventListener("load", init);
+    let address = "http://localhost:8200";
     let inputs = document.getElementsByTagName("input");
     function init(_event) {
         console.log("Init");
@@ -23,29 +24,37 @@ var L04_Interfaces;
             gender: genderButton.checked,
             studiengang: document.getElementsByTagName("select").item(0).value
         };
-        console.log(studi);
-        console.log(studi.age);
-        console.log(studi["age"]);
-        // Datensatz im assoziativen Array unter der Matrikelnummer speichern
-        L04_Interfaces.studiHomoAssoc[matrikel] = studi;
-        // nur um das auch noch zu zeigen...
-        L04_Interfaces.studiSimpleArray.push(studi);
+        let convert = JSON.stringify(studi);
+        console.log(convert);
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=insert&data=" + convert, true);
+        xhr.addEventListener("readystatechange", handleStateChangeInsert);
+        xhr.send();
+    }
+    function handleStateChangeInsert(_event) {
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            alert(xhr.response);
+        }
     }
     function refresh(_event) {
-        let output = document.getElementsByTagName("textarea")[0];
-        output.value = "";
-        // for-in-Schleife iteriert über die Schlüssel des assoziativen Arrays
-        for (let matrikel in L04_Interfaces.studiHomoAssoc) {
-            let studi = L04_Interfaces.studiHomoAssoc[matrikel];
-            let line = matrikel + ": ";
-            line += studi.studiengang + ", " + studi.name + ", " + studi.firstname + ", " + studi.age + " Jahre ";
-            line += studi.gender ? "(M)" : "(F)";
-            output.value += line + "\n";
+        let xhr1 = new XMLHttpRequest();
+        xhr1.open("GET", address + "?command=refresh", true);
+        xhr1.addEventListener("readystatechange", handleStateChangeRefresh);
+        xhr1.send();
+        function handleStateChangeRefresh(_event) {
+            let output = document.getElementsByTagName("textarea")[0];
+            output.value = "";
+            var xhr1 = _event.target;
+            if (xhr1.readyState == XMLHttpRequest.DONE) {
+                JSON.parse(xhr1.response);
+                console.log(xhr1.response);
+            }
         }
     }
     function search(_event) {
         let mtrkl = inputs[6].value;
-        let studi = L04_Interfaces.studiHomoAssoc[mtrkl];
+        let studi = Aufgabe6.studiHomoAssoc[mtrkl];
         let output2 = document.getElementsByTagName("textarea")[1];
         if (studi) {
             let line = mtrkl + ": ";
@@ -57,12 +66,5 @@ var L04_Interfaces;
             output2.value = "No Match";
         }
     }
-    // zusätzliche Konsolenausgaben zur Demonstration
-    console.group("Simple Array");
-    console.log(L04_Interfaces.studiSimpleArray);
-    console.groupEnd();
-    console.group("Associatives Array (Object)");
-    console.log(L04_Interfaces.studiHomoAssoc);
-    console.groupEnd();
-})(L04_Interfaces || (L04_Interfaces = {}));
+})(Aufgabe6 || (Aufgabe6 = {}));
 //# sourceMappingURL=ProcessForm.js.map
