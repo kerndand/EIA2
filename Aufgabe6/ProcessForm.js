@@ -1,7 +1,15 @@
+/*
+Aufgabe: 6 : ClientServer - StudiVZ
+Name: Daniel Kern
+Matrikel: 257171
+Datum: 26.05.18
+    
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
 var Aufgabe6;
 (function (Aufgabe6) {
     window.addEventListener("load", init);
-    let address = "http://localhost:8200";
+    let address = "http://eia2-node-danielkern.herokuapp.com";
     let inputs = document.getElementsByTagName("input");
     function init(_event) {
         console.log("Init");
@@ -38,32 +46,32 @@ var Aufgabe6;
         }
     }
     function refresh(_event) {
-        let xhr1 = new XMLHttpRequest();
-        xhr1.open("GET", address + "?command=refresh", true);
-        xhr1.addEventListener("readystatechange", handleStateChangeRefresh);
-        xhr1.send();
-        function handleStateChangeRefresh(_event) {
-            let output = document.getElementsByTagName("textarea")[0];
-            output.value = "";
-            var xhr1 = _event.target;
-            if (xhr1.readyState == XMLHttpRequest.DONE) {
-                JSON.parse(xhr1.response);
-                console.log(xhr1.response);
-            }
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=refresh", true);
+        xhr.addEventListener("readystatechange", handleStateChangeRefresh);
+        xhr.send();
+    }
+    function handleStateChangeRefresh(_event) {
+        let output = document.getElementsByTagName("textarea")[0];
+        output.value = "";
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
         }
     }
     function search(_event) {
         let mtrkl = inputs[6].value;
-        let studi = Aufgabe6.studiHomoAssoc[mtrkl];
-        let output2 = document.getElementsByTagName("textarea")[1];
-        if (studi) {
-            let line = mtrkl + ": ";
-            line += studi.studiengang + ", " + studi.name + ", " + studi.firstname + ", " + studi.age + " Jahre ";
-            line += studi.gender ? "(M)" : "(F)";
-            output2.value = line;
-        }
-        else {
-            output2.value = "No Match";
+        let xhr = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=search&searchFor=" + mtrkl, true);
+        xhr.addEventListener("readystatechange", handleStateChangeSearch);
+        xhr.send();
+    }
+    function handleStateChangeSearch(_event) {
+        let output = document.getElementsByTagName("textarea")[1];
+        output.value = "";
+        var xhr = _event.target;
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
         }
     }
 })(Aufgabe6 || (Aufgabe6 = {}));

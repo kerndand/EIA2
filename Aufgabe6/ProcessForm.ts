@@ -1,6 +1,14 @@
+/*
+Aufgabe: 6 : ClientServer - StudiVZ
+Name: Daniel Kern   
+Matrikel: 257171
+Datum: 26.05.18
+    
+Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
+*/
 namespace Aufgabe6 {
     window.addEventListener("load", init);
-    let address: string = "http://localhost:8200";
+    let address: string = "http://eia2-node-danielkern.herokuapp.com";
 
     let inputs: NodeListOf<HTMLInputElement> = document.getElementsByTagName("input");
 
@@ -45,19 +53,39 @@ namespace Aufgabe6 {
 
 
     function refresh(_event: Event): void {
-        let xhr1: XMLHttpRequest = new XMLHttpRequest();
-        xhr1.open("GET", address + "?command=refresh", true);
-        xhr1.addEventListener("readystatechange", handleStateChangeRefresh);
-        xhr1.send();
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=refresh", true);
+        xhr.addEventListener("readystatechange", handleStateChangeRefresh);
+        xhr.send();
     }    
     
     function handleStateChangeRefresh(_event: ProgressEvent): void {
-            let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
-            output.value = "";
-            var xhr1: XMLHttpRequest = (<XMLHttpRequest>_event.target);
-            if (xhr1.readyState == XMLHttpRequest.DONE) {
-                let data: string = xhr1.response.toString();
-                output.value += "Studi" + data + "\n";
-            }
-        }
+        let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[0];
+        output.value = "";
+        var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
+        }           
+    }
+    
+    function search(_event: Event): void {
+        let mtrkl: string = inputs[6].value;
+        
+        let xhr: XMLHttpRequest = new XMLHttpRequest();
+        xhr.open("GET", address + "?command=search&searchFor=" + mtrkl, true);
+        xhr.addEventListener("readystatechange", handleStateChangeSearch);
+        xhr.send();    
+    }
+    
+    function handleStateChangeSearch(_event: ProgressEvent): void {
+        let output: HTMLTextAreaElement = document.getElementsByTagName("textarea")[1];
+        output.value = "";
+        var xhr: XMLHttpRequest = (<XMLHttpRequest>_event.target);
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            output.value += xhr.response;
+        }           
+    }
+    
+            
+
 }
