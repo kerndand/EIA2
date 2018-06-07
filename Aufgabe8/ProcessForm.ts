@@ -1,8 +1,8 @@
 /*
-Aufgabe: 6 : ClientServer - StudiVZ
+Aufgabe: 8 : Database - StudiVZ
 Name: Daniel Kern   
 Matrikel: 257171
-Datum: 26.05.18
+Datum: 07.06.18
     
 Hiermit versichere ich, dass ich diesen Code selbst geschrieben habe. Er wurde nicht kopiert und auch nicht diktiert.
 */
