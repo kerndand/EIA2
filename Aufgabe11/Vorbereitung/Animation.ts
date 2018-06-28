@@ -19,7 +19,7 @@ namespace Vorbereitung {
 
             let rect: Rect = new Rect("#ff0000");
             stars.push(rect);
-            
+
             let dreieck: Dreieck = new Dreieck("#ffff00");
             stars.push(dreieck);
         }
@@ -31,21 +31,21 @@ namespace Vorbereitung {
     function insertNewObject(_event: MouseEvent): void {
         let mouseX: number = _event.clientX;
         let mouseY: number = _event.clientY;
-        
+
         let random: number = Math.random() * 13;
-        
+
         if (random < 5) {
             let star: DavidStar = new DavidStar("#00ffff");
-            stars.push(star);    
+            stars.push(star);
         } else if (random < 9) {
             let rect: Rect = new Rect("#ff0000");
-            stars.push(rect); 
+            stars.push(rect);
         } else {
             let dreieck: Dreieck = new Dreieck("#ffff00");
             stars.push(dreieck);
         }
-        
-    } 
+
+    }
 
     function animate(): void {
         window.setTimeout(animate, 10);
