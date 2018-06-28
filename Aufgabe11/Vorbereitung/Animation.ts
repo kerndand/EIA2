@@ -2,7 +2,7 @@ namespace Vorbereitung {
     window.addEventListener("load", init);
     export let crc2: CanvasRenderingContext2D;
     let stars: DavidStar[] = [];
-    let n: number = 100;
+    let n: number = 25;
 
     //let rects: Rect[] = [];
 
@@ -19,16 +19,33 @@ namespace Vorbereitung {
 
             let rect: Rect = new Rect("#ff0000");
             stars.push(rect);
+            
+            let dreieck: Dreieck = new Dreieck("#ffff00");
+            stars.push(dreieck);
         }
 
 
         animate();
     }
 
-    function insertNewObject(_event: Event): void {
-        let star: DavidStar = new DavidStar("#ffff00");
-        stars.push(star);
-    }
+    function insertNewObject(_event: MouseEvent): void {
+        let mouseX: number = _event.clientX;
+        let mouseY: number = _event.clientY;
+        
+        let random: number = Math.random() * 13;
+        
+        if (random < 5) {
+            let star: DavidStar = new DavidStar("#00ffff");
+            stars.push(star);    
+        } else if (random < 9) {
+            let rect: Rect = new Rect("#ff0000");
+            stars.push(rect); 
+        } else {
+            let dreieck: Dreieck = new Dreieck("#ffff00");
+            stars.push(dreieck);
+        }
+        
+    } 
 
     function animate(): void {
         window.setTimeout(animate, 10);

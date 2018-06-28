@@ -1,29 +1,44 @@
-var L11_Inheritance;
-(function (L11_Inheritance) {
+var Vorbereitung;
+(function (Vorbereitung) {
     window.addEventListener("load", init);
     let stars = [];
-    let n = 100;
+    let n = 25;
     //let rects: Rect[] = [];
     function init(_event) {
         let canvas = document.getElementsByTagName("canvas")[0];
-        L11_Inheritance.crc2 = canvas.getContext("2d");
-        console.log(L11_Inheritance.crc2);
+        Vorbereitung.crc2 = canvas.getContext("2d");
+        console.log(Vorbereitung.crc2);
         canvas.addEventListener("click", insertNewObject);
         for (let i = 0; i < n; i++) {
-            let star = new L11_Inheritance.DavidStar("#00ffff");
+            let star = new Vorbereitung.DavidStar("#00ffff");
             stars.push(star);
-            let rect = new L11_Inheritance.Rect("#ff0000");
+            let rect = new Vorbereitung.Rect("#ff0000");
             stars.push(rect);
+            let dreieck = new Vorbereitung.Dreieck("#ffff00");
+            stars.push(dreieck);
         }
         animate();
     }
     function insertNewObject(_event) {
-        let star = new L11_Inheritance.DavidStar("#ffff00");
-        stars.push(star);
+        let mouseX = _event.clientX;
+        let mouseY = _event.clientY;
+        let random = Math.random() * 13;
+        if (random < 5) {
+            let star = new Vorbereitung.DavidStar("#00ffff");
+            stars.push(star);
+        }
+        else if (random < 9) {
+            let rect = new Vorbereitung.Rect("#ff0000");
+            stars.push(rect);
+        }
+        else {
+            let dreieck = new Vorbereitung.Dreieck("#ffff00");
+            stars.push(dreieck);
+        }
     }
     function animate() {
         window.setTimeout(animate, 10);
-        L11_Inheritance.crc2.clearRect(0, 0, L11_Inheritance.crc2.canvas.width, L11_Inheritance.crc2.canvas.height);
+        Vorbereitung.crc2.clearRect(0, 0, Vorbereitung.crc2.canvas.width, Vorbereitung.crc2.canvas.height);
         moveObjects();
         drawObjects();
     }
@@ -37,5 +52,5 @@ var L11_Inheritance;
             stars[i].draw();
         }
     }
-})(L11_Inheritance || (L11_Inheritance = {}));
+})(Vorbereitung || (Vorbereitung = {}));
 //# sourceMappingURL=Animation.js.map
