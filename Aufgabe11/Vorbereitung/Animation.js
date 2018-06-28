@@ -25,14 +25,20 @@ var Vorbereitung;
         let random = Math.random() * 13;
         if (random < 5) {
             let star = new Vorbereitung.DavidStar("#00ffff");
+            star.x = mouseX;
+            star.y = mouseY;
             stars.push(star);
         }
         else if (random < 9) {
             let rect = new Vorbereitung.Rect("#ff0000");
+            rect.x = mouseX;
+            rect.y = mouseY;
             stars.push(rect);
         }
         else {
             let dreieck = new Vorbereitung.Dreieck("#ffff00");
+            dreieck.x = mouseX;
+            dreieck.y = mouseY;
             stars.push(dreieck);
         }
     }

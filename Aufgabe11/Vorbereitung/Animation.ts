@@ -36,12 +36,18 @@ namespace Vorbereitung {
 
         if (random < 5) {
             let star: DavidStar = new DavidStar("#00ffff");
+            star.x = mouseX;
+            star.y = mouseY;
             stars.push(star);
         } else if (random < 9) {
             let rect: Rect = new Rect("#ff0000");
+            rect.x = mouseX;
+            rect.y = mouseY;
             stars.push(rect);
         } else {
             let dreieck: Dreieck = new Dreieck("#ffff00");
+            dreieck.x = mouseX;
+            dreieck.y = mouseY;
             stars.push(dreieck);
         }
 
