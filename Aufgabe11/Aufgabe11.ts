@@ -54,9 +54,15 @@ namespace Aufgabe11 {
 
         for (let i: number = 0; i < 3; i++) {
             let food: Food = new Food();
-            food.x = mouseX + Math.random() * 50 - 2;
-            food.y = mouseY;
-            objects.push(food);
+            if (i == 1) {
+                food.x = mouseX;
+                food.y = mouseY;
+                objects.push(food);
+            } else {
+                food.x = mouseX + Math.random() * 40 - 2;
+                food.y = mouseY;
+                objects.push(food);
+            }
         }
     }
 

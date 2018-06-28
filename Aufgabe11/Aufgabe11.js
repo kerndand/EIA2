@@ -44,9 +44,16 @@ var Aufgabe11;
         let mouseY = _event.clientY;
         for (let i = 0; i < 3; i++) {
             let food = new Aufgabe11.Food();
-            food.x = mouseX + Math.random() * 50 - 2;
-            food.y = mouseY;
-            objects.push(food);
+            if (i == 1) {
+                food.x = mouseX;
+                food.y = mouseY;
+                objects.push(food);
+            }
+            else {
+                food.x = mouseX + Math.random() * 40 - 2;
+                food.y = mouseY;
+                objects.push(food);
+            }
         }
     }
     function animate() {
