@@ -1,11 +1,14 @@
 namespace Aufgabe11 {
 
     export class Food extends MovingObjects {
-        
+
+        border: number;
+
         constructor() {
             super();
+            this.border = Math.random() * (360 - 290) + 290;
         }
-        
+
         setColor(): void {
             this.r = 90;
             this.g = 60;
@@ -13,11 +16,12 @@ namespace Aufgabe11 {
         }
 
         move(): void {
-            if (this.y == 350) {
-                this.y += 0;
-            } else {
-                this.y += 1;   
+            this.y += 1;
+            
+            if (this.y > this.border) {
+                this.y = this.border;    
             }
+
         }
 
         draw(): void {

@@ -60,7 +60,7 @@ namespace Aufgabe11 {
                 objects.push(food);
             } else {
                 food.x = mouseX + Math.random() * 40 - 2;
-                food.y = mouseY;
+                food.y = mouseY + Math.random() * 30 - 2;
                 objects.push(food);
             }
         }

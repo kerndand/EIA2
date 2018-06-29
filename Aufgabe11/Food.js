@@ -3,6 +3,7 @@ var Aufgabe11;
     class Food extends Aufgabe11.MovingObjects {
         constructor() {
             super();
+            this.border = Math.random() * (360 - 290) + 290;
         }
         setColor() {
             this.r = 90;
@@ -10,11 +11,9 @@ var Aufgabe11;
             this.b = 0;
         }
         move() {
-            if (this.y == 350) {
-                this.y += 0;
-            }
-            else {
-                this.y += 1;
+            this.y += 1;
+            if (this.y > this.border) {
+                this.y = this.border;
             }
         }
         draw() {
