@@ -64,6 +64,10 @@ namespace CatchTheDrop {
             objects.push(smoke2);
 
         }
+        document.addEventListener("keydown", movementByKey, false);
+        document.addEventListener("keyup", movementByKeyRelease, false);
+
+        canvas.addEventListener("touchmove", movementByTouch, false);
 
         createRain();
         animate();

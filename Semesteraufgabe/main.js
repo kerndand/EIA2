@@ -40,6 +40,9 @@ var CatchTheDrop;
             let smoke2 = new CatchTheDrop.Smoke(525, Math.random() * 350, Math.random() * (15 - 10) + 10);
             objects.push(smoke2);
         }
+        document.addEventListener("keydown", movementByKey, false);
+        document.addEventListener("keyup", movementByKeyRelease, false);
+        canvas.addEventListener("touchmove", movementByTouch, false);
         createRain();
         animate();
     }
