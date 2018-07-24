@@ -5,6 +5,7 @@ namespace CatchTheDrop {
         constructor(_x: number, _y: number) {
             super(_x, _y);
         }
+        
 
         draw(): void {
             
