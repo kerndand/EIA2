@@ -94,8 +94,8 @@ var CatchTheDrop;
         }
     }
     function movementByTouch(_event) {
-        if (_event.touches[0].screenX > 0 && _event.touches[0].screenX < CatchTheDrop.width) {
-            bucket.x = _event.touches[0].screenX - 60 / 2;
+        if (_event.touches[0].clientX > 0 && _event.touches[0].clientX < CatchTheDrop.width) {
+            bucket.x = _event.changedTouches[0].clientX - 60 / 2;
         }
     }
 })(CatchTheDrop || (CatchTheDrop = {}));
