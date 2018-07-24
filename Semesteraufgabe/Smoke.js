@@ -6,7 +6,7 @@ var CatchTheDrop;
             this.radius = _r;
         }
         move() {
-            this.y -= 2;
+            this.y -= 1;
             if (this.y < 280) {
                 this.y = 350;
             }

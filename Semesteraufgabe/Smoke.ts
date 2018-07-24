@@ -10,7 +10,7 @@ namespace CatchTheDrop {
 
 
         move(): void {
-            this.y -= 2;
+            this.y -= 1;
 
             if (this.y < 280) {
                 this.y = 350;

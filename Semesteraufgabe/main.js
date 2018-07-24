@@ -1,8 +1,11 @@
 var CatchTheDrop;
 (function (CatchTheDrop) {
     window.addEventListener("load", init);
+    CatchTheDrop.rightKey = false;
+    CatchTheDrop.leftKey = false;
     let objects = [];
     let imagedata;
+    let bucket = new CatchTheDrop.Bucket(270, 535);
     function init(_event) {
         let canvas = document.getElementsByTagName("canvas")[0];
         CatchTheDrop.ctx = canvas.getContext("2d");
@@ -12,6 +15,10 @@ var CatchTheDrop;
         sky.draw();
         let meadow = new CatchTheDrop.Meadow(CatchTheDrop.height - 150);
         meadow.draw();
+        for (let i = 0; i < 7; i++) {
+            let flower = new CatchTheDrop.Flower(Math.random() * CatchTheDrop.width, Math.random() * (600 - 480) + 480, Math.random() * 255, Math.random() * 255, Math.random() * 255);
+            flower.draw();
+        }
         let sun = new CatchTheDrop.Sun(360, 100, 60);
         sun.draw();
         let cloud = new CatchTheDrop.Cloud(0, 0);
@@ -33,6 +40,11 @@ var CatchTheDrop;
             let smoke2 = new CatchTheDrop.Smoke(525, Math.random() * 350, Math.random() * (15 - 10) + 10);
             objects.push(smoke2);
         }
+        document.addEventListener("keydown", movementByKey, false);
+        document.addEventListener("keyup", movementByKeyRelease, false);
+        canvas.addEventListener("touchmove", movementByTouch, false);
+        // document.addEventListener("touchmove", moveByTouch);
+        createRain();
         animate();
     }
     function animate() {
@@ -49,6 +61,42 @@ var CatchTheDrop;
     function drawObjects() {
         for (let i = 0; i < objects.length; i++)
             objects[i].draw();
+        bucket.draw();
+    }
+    function createRain() {
+        window.setTimeout(createRain, 1500);
+        let rainchance = Math.random();
+        if (rainchance < .66) {
+            let rain = new CatchTheDrop.Rain(Math.random() * CatchTheDrop.width, -40);
+            objects.push(rain);
+        }
+        else {
+            let acidrain = new CatchTheDrop.AcidRain(Math.random() * CatchTheDrop.width, -40);
+            objects.push(acidrain);
+        }
+    }
+    function movementByKey(_event) {
+        if (_event.key == "ArrowRight") {
+            CatchTheDrop.rightKey = true;
+            bucket.move();
+        }
+        else if (_event.key == "ArrowLeft") {
+            CatchTheDrop.leftKey = true;
+            bucket.move();
+        }
+    }
+    function movementByKeyRelease(_event) {
+        if (_event.keyCode == 39) {
+            CatchTheDrop.rightKey = false;
+        }
+        else if (_event.keyCode == 37) {
+            CatchTheDrop.leftKey = false;
+        }
+    }
+    function movementByTouch(_event) {
+        if (_event.touches[0].screenX > 0 && _event.touches[0].screenX < CatchTheDrop.width) {
+            bucket.x = _event.touches[0].screenX - 60 / 2;
+        }
     }
 })(CatchTheDrop || (CatchTheDrop = {}));
 //# sourceMappingURL=main.js.map
