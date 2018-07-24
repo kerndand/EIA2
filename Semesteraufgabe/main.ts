@@ -69,6 +69,7 @@ namespace CatchTheDrop {
         document.addEventListener("keyup", movementByKeyRelease, false);
 
         canvas.addEventListener("touchmove", movementByTouch, false);
+        // document.addEventListener("touchmove", moveByTouch);
 
         createRain();
         animate();
@@ -133,12 +134,8 @@ namespace CatchTheDrop {
 
     function movementByTouch(_event: TouchEvent): void {
 
-        if (_event.changedTouches[0].clientX < ctx.canvas.clientWidth / 2) {
-            rightKey = true;
-            bucket.move();
-        } else {
-            bucket.move();
-            leftKey = true;
+        if (_event.touches[0].screenX > 0 && _event.touches[0].screenX < width) {
+            bucket.x = _event.touches[0].screenX - 60 / 2;
         }
     }
 

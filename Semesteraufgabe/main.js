@@ -43,6 +43,7 @@ var CatchTheDrop;
         document.addEventListener("keydown", movementByKey, false);
         document.addEventListener("keyup", movementByKeyRelease, false);
         canvas.addEventListener("touchmove", movementByTouch, false);
+        // document.addEventListener("touchmove", moveByTouch);
         createRain();
         animate();
     }
@@ -93,13 +94,8 @@ var CatchTheDrop;
         }
     }
     function movementByTouch(_event) {
-        if (_event.changedTouches[0].clientX < CatchTheDrop.ctx.canvas.clientWidth / 2) {
-            CatchTheDrop.rightKey = true;
-            bucket.move();
-        }
-        else {
-            bucket.move();
-            CatchTheDrop.leftKey = true;
+        if (_event.touches[0].screenX > 0 && _event.touches[0].screenX < CatchTheDrop.width) {
+            bucket.x = _event.touches[0].screenX - 60 / 2;
         }
     }
 })(CatchTheDrop || (CatchTheDrop = {}));
