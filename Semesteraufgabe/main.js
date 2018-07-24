@@ -94,7 +94,7 @@ var CatchTheDrop;
         }
     }
     function movementByTouch(_event) {
-        if (_event.touches[0].clientX > 0 && _event.touches[0].clientX < CatchTheDrop.width) {
+        if (_event.changedTouches[0].clientX > 0 && _event.changedTouches[0].clientX < CatchTheDrop.width) {
             bucket.x = _event.changedTouches[0].clientX - 60 / 2;
         }
     }

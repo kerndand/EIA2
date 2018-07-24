@@ -134,7 +134,7 @@ namespace CatchTheDrop {
 
     function movementByTouch(_event: TouchEvent): void {
 
-        if (_event.touches[0].clientX > 0 && _event.touches[0].clientX < width) {
+        if (_event.changedTouches[0].clientX > 0 && _event.changedTouches[0].clientX < width) {
             bucket.x = _event.changedTouches[0].clientX - 60 / 2;
         }
     }
