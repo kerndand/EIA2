@@ -6,7 +6,6 @@ namespace CatchTheDrop {
             super(_x, _y);
         }
 
-
         draw(): void {
             
             let gradient: CanvasGradient = ctx.createLinearGradient(this.x, this.y, this.x, this.y + 40);
