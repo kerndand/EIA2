@@ -95,7 +95,7 @@ var CatchTheDrop;
     }
     function movementByTouch(_event) {
         if (_event.changedTouches[0].clientX > 0 && _event.changedTouches[0].clientX < CatchTheDrop.width) {
-            bucket.x = _event.changedTouches[0].clientX - 60 / 2;
+            bucket.x = _event.changedTouches[0].clientX - 60;
         }
     }
 })(CatchTheDrop || (CatchTheDrop = {}));
