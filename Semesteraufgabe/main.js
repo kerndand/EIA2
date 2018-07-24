@@ -87,7 +87,7 @@ var CatchTheDrop;
     }
     function movementByKeyRelease(_event) {
         if (_event.keyCode == 39) {
-            CatchTheDrop.rightKey = false;
+            CatchTheDrop.rightKey = true;
         }
         else if (_event.keyCode == 37) {
             CatchTheDrop.leftKey = false;

@@ -126,7 +126,7 @@ namespace CatchTheDrop {
 
     function movementByKeyRelease(_event: KeyboardEvent): void {
         if (_event.keyCode == 39) {
-            rightKey = false;
+            rightKey = true;
         }
         else if (_event.keyCode == 37) {
             leftKey = false;
