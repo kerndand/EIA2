@@ -120,6 +120,7 @@ namespace CatchTheDrop {
         else if (_event.key == "ArrowLeft") {
             leftKey = true;
             bucket.move();
+            
         }
     }
 
@@ -136,7 +137,7 @@ namespace CatchTheDrop {
 
         if (_event.changedTouches[0].clientX > 0 && _event.changedTouches[0].clientX < width) {
             bucket.x = _event.changedTouches[0].clientX - 60 / 2;
-        }
+        } 
     }
 
 
