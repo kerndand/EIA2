@@ -73,6 +73,7 @@ namespace CatchTheDrop {
         animate();
 
     }
+    
 
     function animate(): void {
         window.setTimeout(animate, 10);
