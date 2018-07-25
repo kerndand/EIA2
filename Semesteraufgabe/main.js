@@ -9,6 +9,8 @@ var CatchTheDrop;
     let score = 0;
     let bucket = new CatchTheDrop.Bucket(270, 535);
     let pressed = 0;
+    let startScreen = true;
+    let endScreen = false;
     function init(_event) {
         let canvas = document.getElementsByTagName("canvas")[0];
         CatchTheDrop.ctx = canvas.getContext("2d");
@@ -57,10 +59,15 @@ var CatchTheDrop;
         }
     }
     function animate() {
-        window.setTimeout(animate, 10);
         CatchTheDrop.ctx.putImageData(imagedata, 0, 0);
-        moveObjects();
-        drawObjects();
+        if (livesArray.length > 0) {
+            moveObjects();
+            drawObjects();
+        }
+        else {
+            gameOver();
+        }
+        window.setTimeout(animate, 10);
     }
     function moveObjects() {
         for (let i = 0; i < objects.length; i++) {
@@ -88,8 +95,14 @@ var CatchTheDrop;
         }
     }
     function handleClick(_event) {
-        startGame();
-        pressed = 1;
+        if (startScreen) {
+            startGame();
+            pressed = 1;
+            startScreen = false;
+        }
+        else if (endScreen) {
+            window.location.reload();
+        }
     }
     function movementByKey(_event) {
         if (_event.keyCode == 39) {
@@ -101,8 +114,14 @@ var CatchTheDrop;
             bucket.move();
         }
         if (_event.keyCode == 32) {
-            startGame();
-            pressed = 1;
+            if (startScreen) {
+                startGame();
+                pressed = 1;
+                startScreen = false;
+            }
+            else if (endScreen) {
+                window.location.reload();
+            }
         }
     }
     function movementByKeyRelease(_event) {
@@ -154,6 +173,57 @@ var CatchTheDrop;
         CatchTheDrop.ctx.fillStyle = "rgb(0, 130, 250)";
         CatchTheDrop.ctx.fillText("Try to catch only the green acid drops", 5, 250);
         CatchTheDrop.ctx.fillText("Press space or click to start", 75, CatchTheDrop.height / 2);
+    }
+    function gameOver() {
+        endScreen = true;
+        if (score <= 30) {
+            CatchTheDrop.ctx.font = "25px Courier";
+            CatchTheDrop.ctx.textAlign = "center";
+            CatchTheDrop.ctx.fillStyle = "rgb(0, 130, 250)";
+            CatchTheDrop.ctx.fillText("GAME OVER", 290, 100);
+            CatchTheDrop.ctx.fillText("You LOST", 290, 150);
+            CatchTheDrop.ctx.fillText("You didn't catch enough", 290, 200);
+            CatchTheDrop.ctx.fillText("acid drops to prevent", 290, 225);
+            CatchTheDrop.ctx.fillText("the nature from dying", 290, 250);
+            CatchTheDrop.ctx.fillText("YOUR SCORE: " + score.toString(), 290, 300);
+            CatchTheDrop.ctx.fillText("Press space or click to try again", 290, 350);
+        }
+        else if (score > 30 && score <= 50) {
+            CatchTheDrop.ctx.font = "25px Courier";
+            CatchTheDrop.ctx.textAlign = "center";
+            CatchTheDrop.ctx.fillStyle = "rgb(0, 130, 250)";
+            CatchTheDrop.ctx.fillText("GAME OVER", 290, 100);
+            CatchTheDrop.ctx.fillText("You WON - BRONZE", 290, 150);
+            CatchTheDrop.ctx.fillText("You caught barely enough", 290, 200);
+            CatchTheDrop.ctx.fillText("acid drops to prevent", 290, 225);
+            CatchTheDrop.ctx.fillText("the nature from dying", 290, 250);
+            CatchTheDrop.ctx.fillText("YOUR SCORE: " + score.toString(), 290, 300);
+            CatchTheDrop.ctx.fillText("Press space or click to try again", 290, 350);
+        }
+        else if (score > 50 && score <= 75) {
+            CatchTheDrop.ctx.font = "25px Courier";
+            CatchTheDrop.ctx.textAlign = "center";
+            CatchTheDrop.ctx.fillStyle = "rgb(0, 130, 250)";
+            CatchTheDrop.ctx.fillText("GAME OVER", 290, 100);
+            CatchTheDrop.ctx.fillText("You WON - SILVER", 290, 150);
+            CatchTheDrop.ctx.fillText("You caught enough", 290, 200);
+            CatchTheDrop.ctx.fillText("acid drops to prevent", 290, 225);
+            CatchTheDrop.ctx.fillText("the nature from dying", 290, 250);
+            CatchTheDrop.ctx.fillText("YOUR SCORE: " + score.toString(), 290, 300);
+            CatchTheDrop.ctx.fillText("Press space or click to try again", 290, 350);
+        }
+        else if (score > 75) {
+            CatchTheDrop.ctx.font = "25px Courier";
+            CatchTheDrop.ctx.textAlign = "center";
+            CatchTheDrop.ctx.fillStyle = "rgb(0, 130, 250)";
+            CatchTheDrop.ctx.fillText("GAME OVER", 290, 100);
+            CatchTheDrop.ctx.fillText("You WON - GOLD", 290, 150);
+            CatchTheDrop.ctx.fillText("You caught more than enough", 290, 200);
+            CatchTheDrop.ctx.fillText("acid drops to prevent", 290, 225);
+            CatchTheDrop.ctx.fillText("the nature from dying", 290, 250);
+            CatchTheDrop.ctx.fillText("YOUR SCORE: " + score.toString(), 290, 300);
+            CatchTheDrop.ctx.fillText("Press space or click to try again", 290, 350);
+        }
     }
 })(CatchTheDrop || (CatchTheDrop = {}));
 //# sourceMappingURL=main.js.map
