@@ -132,7 +132,7 @@ namespace CatchTheDrop {
 
     // Erzeugen der Tropfen
     function createRain(): void {
-        window.setTimeout(createRain, 1000);
+        window.setTimeout(createRain, 1250);
 
         let rainchance: number = Math.random();
 

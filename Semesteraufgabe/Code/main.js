@@ -93,7 +93,7 @@ var CatchTheDrop;
     }
     // Erzeugen der Tropfen
     function createRain() {
-        window.setTimeout(createRain, 1000);
+        window.setTimeout(createRain, 1250);
         let rainchance = Math.random();
         if (rainchance < .5) {
             let rain = new CatchTheDrop.Rain(Math.random() * CatchTheDrop.width, -40);
