@@ -172,8 +172,8 @@ var CatchTheDrop;
             else if (miss) {
                 if (acid) {
                     livesArray.splice(0, 1);
-                    objects.splice(i, 1);
                 }
+                objects.splice(i, 1);
             }
         }
     }
