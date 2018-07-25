@@ -6,7 +6,7 @@ var CatchTheDrop;
             this.y = _y;
         }
         move() {
-            this.y += 1;
+            this.y += 1.5;
         }
         draw() {
             //

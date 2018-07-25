@@ -33,6 +33,18 @@ var CatchTheDrop;
             CatchTheDrop.ctx.fillStyle = "rgb(100, 100, 100)";
             CatchTheDrop.ctx.fill();
         }
+        hit(_x, _y) {
+            if (_x > this.x && _x < this.x + 60 && _y > this.y && _y < this.y + 60) {
+                return true;
+            }
+            return false;
+        }
+        miss(_y) {
+            if (_y < 600) {
+                return false;
+            }
+            return true;
+        }
     }
     CatchTheDrop.Bucket = Bucket;
 })(CatchTheDrop || (CatchTheDrop = {}));

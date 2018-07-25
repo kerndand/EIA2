@@ -44,6 +44,20 @@ namespace CatchTheDrop {
             ctx.fill();
 
         }
+
+        hit(_x: number, _y: number): boolean {
+            if (_x > this.x && _x < this.x + 60 && _y > this.y && _y < this.y + 60) {
+                return true;
+            }
+            return false;
+        }
+        
+        miss(_y: number): boolean {
+            if (_y < 600) {
+                return false;    
+            } 
+            return true;   
+        }
     }
 
 }

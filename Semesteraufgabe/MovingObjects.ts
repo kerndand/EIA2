@@ -11,7 +11,7 @@ namespace CatchTheDrop {
         
         
         move(): void {
-            this.y += 1;
+            this.y += 1.5;
         }
         
         draw(): void {

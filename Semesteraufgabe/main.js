@@ -4,8 +4,11 @@ var CatchTheDrop;
     CatchTheDrop.rightKey = false;
     CatchTheDrop.leftKey = false;
     let objects = [];
+    let livesArray = [];
     let imagedata;
+    let score = 0;
     let bucket = new CatchTheDrop.Bucket(270, 535);
+    let pressed = 0;
     function init(_event) {
         let canvas = document.getElementsByTagName("canvas")[0];
         CatchTheDrop.ctx = canvas.getContext("2d");
@@ -15,10 +18,6 @@ var CatchTheDrop;
         sky.draw();
         let meadow = new CatchTheDrop.Meadow(CatchTheDrop.height - 150);
         meadow.draw();
-        for (let i = 0; i < 7; i++) {
-            let flower = new CatchTheDrop.Flower(Math.random() * CatchTheDrop.width, Math.random() * (600 - 480) + 480, Math.random() * 255, Math.random() * 255, Math.random() * 255);
-            flower.draw();
-        }
         let sun = new CatchTheDrop.Sun(360, 100, 60);
         sun.draw();
         let cloud = new CatchTheDrop.Cloud(0, 0);
@@ -34,6 +33,10 @@ var CatchTheDrop;
         let powerstation = new CatchTheDrop.NuclearPowerStation(450, 420);
         powerstation.draw();
         imagedata = CatchTheDrop.ctx.getImageData(0, 0, 580, 600);
+        for (let i = 0; i < 3; i++) {
+            let flower = new CatchTheDrop.Flower(440 + (i * 55), 30, Math.random() * 255, Math.random() * 255, Math.random() * 255);
+            livesArray.push(flower);
+        }
         for (let i = 0; i < 50; i++) {
             let smoke = new CatchTheDrop.Smoke(475, Math.random() * 350, Math.random() * (15 - 10) + 10);
             objects.push(smoke);
@@ -42,9 +45,16 @@ var CatchTheDrop;
         }
         document.addEventListener("keydown", movementByKey, false);
         document.addEventListener("keyup", movementByKeyRelease, false);
+        canvas.addEventListener("click", handleClick, false);
         canvas.addEventListener("touchmove", movementByTouch, false);
-        createRain();
-        animate();
+        catchDrop();
+        drawStartScreen();
+    }
+    function startGame() {
+        if (pressed == 0) {
+            createRain();
+            animate();
+        }
     }
     function animate() {
         window.setTimeout(animate, 10);
@@ -60,12 +70,15 @@ var CatchTheDrop;
     function drawObjects() {
         for (let i = 0; i < objects.length; i++)
             objects[i].draw();
+        for (let i = 0; i < livesArray.length; i++)
+            livesArray[i].draw();
         bucket.draw();
+        showScore();
     }
     function createRain() {
-        window.setTimeout(createRain, 1500);
+        window.setTimeout(createRain, 1000);
         let rainchance = Math.random();
-        if (rainchance < .66) {
+        if (rainchance < .5) {
             let rain = new CatchTheDrop.Rain(Math.random() * CatchTheDrop.width, -40);
             objects.push(rain);
         }
@@ -74,14 +87,22 @@ var CatchTheDrop;
             objects.push(acidrain);
         }
     }
+    function handleClick(_event) {
+        startGame();
+        pressed = 1;
+    }
     function movementByKey(_event) {
-        if (_event.key == "ArrowRight") {
+        if (_event.keyCode == 39) {
             CatchTheDrop.rightKey = true;
             bucket.move();
         }
-        else if (_event.key == "ArrowLeft") {
+        else if (_event.keyCode == 37) {
             CatchTheDrop.leftKey = true;
             bucket.move();
+        }
+        if (_event.keyCode == 32) {
+            startGame();
+            pressed = 1;
         }
     }
     function movementByKeyRelease(_event) {
@@ -96,6 +117,43 @@ var CatchTheDrop;
         if (_event.changedTouches[0].clientX > 0 && _event.changedTouches[0].clientX < CatchTheDrop.width) {
             bucket.x = _event.changedTouches[0].clientX - 60 / 2;
         }
+    }
+    function catchDrop() {
+        window.setTimeout(catchDrop, 10);
+        for (let i = 0; i < objects.length; i++) {
+            let drop = objects[i];
+            let hit = bucket.hit(drop.x, drop.y);
+            let miss = bucket.miss(drop.y);
+            let acid = objects[i] instanceof CatchTheDrop.AcidRain;
+            if (hit) {
+                if (acid) {
+                    score++;
+                }
+                else {
+                    if (score > 0) {
+                        score--;
+                    }
+                }
+                objects.splice(i, 1);
+            }
+            else if (miss) {
+                if (acid) {
+                    livesArray.splice(0, 1);
+                    objects.splice(i, 1);
+                }
+            }
+        }
+    }
+    function showScore() {
+        CatchTheDrop.ctx.font = "40px Courier";
+        CatchTheDrop.ctx.fillStyle = "rgb(0, 200, 250)";
+        CatchTheDrop.ctx.fillText(score.toString(), 10, 35);
+    }
+    function drawStartScreen() {
+        CatchTheDrop.ctx.font = "25px Courier";
+        CatchTheDrop.ctx.fillStyle = "rgb(0, 130, 250)";
+        CatchTheDrop.ctx.fillText("Try to catch only the green acid drops", 5, 250);
+        CatchTheDrop.ctx.fillText("Press space or click to start", 75, CatchTheDrop.height / 2);
     }
 })(CatchTheDrop || (CatchTheDrop = {}));
 //# sourceMappingURL=main.js.map

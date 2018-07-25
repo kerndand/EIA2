@@ -26,6 +26,7 @@ namespace CatchTheDrop {
             ctx.closePath();
             ctx.fillStyle = "rgb(" + this.r + "," + this.g + "," + this.b + ")";
             ctx.fill();
+            ctx.stroke();
 
         }
     }

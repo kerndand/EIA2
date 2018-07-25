@@ -18,6 +18,7 @@ var CatchTheDrop;
             CatchTheDrop.ctx.closePath();
             CatchTheDrop.ctx.fillStyle = "rgb(" + this.r + "," + this.g + "," + this.b + ")";
             CatchTheDrop.ctx.fill();
+            CatchTheDrop.ctx.stroke();
         }
     }
     CatchTheDrop.Flower = Flower;
