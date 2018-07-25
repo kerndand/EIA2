@@ -18,6 +18,7 @@ var CatchTheDrop;
         canvas.style.margin = "0 auto";
         CatchTheDrop.height = canvas.height;
         CatchTheDrop.width = canvas.width;
+        // Hintergrund
         let sky = new CatchTheDrop.Sky();
         sky.draw();
         let meadow = new CatchTheDrop.Meadow(CatchTheDrop.height - 150);
@@ -37,6 +38,7 @@ var CatchTheDrop;
         let powerstation = new CatchTheDrop.NuclearPowerStation(450, 420);
         powerstation.draw();
         imagedata = CatchTheDrop.ctx.getImageData(0, 0, 580, 600);
+        // Interaktionsobjekte
         for (let i = 0; i < 3; i++) {
             let flower = new CatchTheDrop.Flower(440 + (i * 55), 30, Math.random() * 255, Math.random() * 255, Math.random() * 255);
             livesArray.push(flower);
@@ -47,6 +49,7 @@ var CatchTheDrop;
             let smoke2 = new CatchTheDrop.Smoke(525, Math.random() * 350, Math.random() * (15 - 10) + 10);
             objects.push(smoke2);
         }
+        //Event-Listener
         document.addEventListener("keydown", movementByKey, false);
         document.addEventListener("keyup", movementByKeyRelease, false);
         canvas.addEventListener("click", handleClick, false);
@@ -54,12 +57,14 @@ var CatchTheDrop;
         catchDrop();
         drawStartScreen();
     }
+    // Funktion zum starten des Spiels
     function startGame() {
         if (pressed == 0) {
             createRain();
             animate();
         }
     }
+    //Animationsfunktion
     function animate() {
         CatchTheDrop.ctx.putImageData(imagedata, 0, 0);
         if (livesArray.length > 0) {
@@ -71,11 +76,13 @@ var CatchTheDrop;
         }
         window.setTimeout(animate, 10);
     }
+    //Bewegungsfunktion f�r Objekte
     function moveObjects() {
         for (let i = 0; i < objects.length; i++) {
             objects[i].move();
         }
     }
+    //Zeichenfunktion f�r Objekte
     function drawObjects() {
         for (let i = 0; i < objects.length; i++)
             objects[i].draw();
@@ -84,6 +91,7 @@ var CatchTheDrop;
         bucket.draw();
         showScore();
     }
+    // Erzeugen der Tropfen
     function createRain() {
         window.setTimeout(createRain, 1000);
         let rainchance = Math.random();
@@ -96,6 +104,7 @@ var CatchTheDrop;
             objects.push(acidrain);
         }
     }
+    // Mausklick-Handler
     function handleClick(_event) {
         if (startScreen) {
             startGame();
@@ -106,6 +115,7 @@ var CatchTheDrop;
             window.location.reload();
         }
     }
+    // Tastatur-Handler
     function movementByKey(_event) {
         if (_event.keyCode == 39) {
             CatchTheDrop.rightKey = true;
@@ -134,11 +144,13 @@ var CatchTheDrop;
             CatchTheDrop.leftKey = false;
         }
     }
+    //Touchscreen-Handler
     function movementByTouch(_event) {
         if (_event.changedTouches[0].clientX > 0 && _event.changedTouches[0].clientX < CatchTheDrop.width) {
             bucket.x = _event.changedTouches[0].clientX - 60 / 2;
         }
     }
+    // Funktion zum Schauen ob Tropfen aufgefangen wird
     function catchDrop() {
         window.setTimeout(catchDrop, 10);
         for (let i = 0; i < objects.length; i++) {
@@ -165,17 +177,20 @@ var CatchTheDrop;
             }
         }
     }
+    //Anzeigen des Scores
     function showScore() {
         CatchTheDrop.ctx.font = "40px Courier";
         CatchTheDrop.ctx.fillStyle = "rgb(0, 200, 250)";
         CatchTheDrop.ctx.fillText(score.toString(), 10, 35);
     }
+    //Zeichnen des Startscreens
     function drawStartScreen() {
         CatchTheDrop.ctx.font = "25px Courier";
         CatchTheDrop.ctx.fillStyle = "rgb(0, 130, 250)";
         CatchTheDrop.ctx.fillText("Try to catch only the green acid drops", 5, 250);
         CatchTheDrop.ctx.fillText("Press space or click to start", 75, CatchTheDrop.height / 2);
     }
+    //Endscreen
     function gameOver() {
         endScreen = true;
         if (score <= 30) {

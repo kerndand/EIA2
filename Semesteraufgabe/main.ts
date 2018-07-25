@@ -28,6 +28,8 @@ namespace CatchTheDrop {
         height = canvas.height;
         width = canvas.width;
 
+        // Hintergrund
+        
         let sky: Sky = new Sky();
         sky.draw();
 
@@ -57,6 +59,7 @@ namespace CatchTheDrop {
 
         imagedata = ctx.getImageData(0, 0, 580, 600);
 
+        // Interaktionsobjekte
         for (let i: number = 0; i < 3; i++) {
             let flower: Flower = new Flower(440 + (i * 55), 30, Math.random() * 255, Math.random() * 255, Math.random() * 255);
             livesArray.push(flower);
@@ -71,16 +74,20 @@ namespace CatchTheDrop {
             objects.push(smoke2);
 
         }
+        
+        //Event-Listener
         document.addEventListener("keydown", movementByKey, false);
         document.addEventListener("keyup", movementByKeyRelease, false);
         canvas.addEventListener("click", handleClick, false);
         canvas.addEventListener("touchmove", movementByTouch, false);
-
+        
+    
         catchDrop();
         drawStartScreen();
 
     }
 
+    // Funktion zum starten des Spiels
     function startGame(): void {
         if (pressed == 0) {
             createRain();
@@ -88,7 +95,7 @@ namespace CatchTheDrop {
         }
     }
 
-
+    //Animationsfunktion
     function animate(): void {
         ctx.putImageData(imagedata, 0, 0);
 
@@ -104,12 +111,14 @@ namespace CatchTheDrop {
         window.setTimeout(animate, 10);
     }
 
+    //Bewegungsfunktion für Objekte
     function moveObjects(): void {
         for (let i: number = 0; i < objects.length; i++) {
             objects[i].move();
         }
     }
 
+    //Zeichenfunktion für Objekte
     function drawObjects(): void {
         for (let i: number = 0; i < objects.length; i++)
             objects[i].draw();
@@ -121,6 +130,7 @@ namespace CatchTheDrop {
         showScore();
     }
 
+    // Erzeugen der Tropfen
     function createRain(): void {
         window.setTimeout(createRain, 1000);
 
@@ -135,6 +145,7 @@ namespace CatchTheDrop {
         }
     }
 
+    // Mausklick-Handler
     function handleClick(_event: MouseEvent): void {
         if (startScreen) {
             startGame();
@@ -145,6 +156,7 @@ namespace CatchTheDrop {
         }
     }
 
+    // Tastatur-Handler
     function movementByKey(_event: KeyboardEvent): void {
         if (_event.keyCode == 39) {
             rightKey = true;
@@ -176,6 +188,7 @@ namespace CatchTheDrop {
         }
     }
 
+    //Touchscreen-Handler
     function movementByTouch(_event: TouchEvent): void {
 
         if (_event.changedTouches[0].clientX > 0 && _event.changedTouches[0].clientX < width) {
@@ -183,6 +196,7 @@ namespace CatchTheDrop {
         }
     }
 
+    // Funktion zum Schauen ob Tropfen aufgefangen wird
     function catchDrop(): void {
         window.setTimeout(catchDrop, 10);
         for (let i: number = 0; i < objects.length; i++) {
@@ -209,12 +223,14 @@ namespace CatchTheDrop {
         }
     }
 
+    //Anzeigen des Scores
     function showScore(): void {
         ctx.font = "40px Courier";
         ctx.fillStyle = "rgb(0, 200, 250)";
         ctx.fillText(score.toString(), 10, 35);
     }
 
+    //Zeichnen des Startscreens
     function drawStartScreen(): void {
         ctx.font = "25px Courier";
         ctx.fillStyle = "rgb(0, 130, 250)";
@@ -222,6 +238,7 @@ namespace CatchTheDrop {
         ctx.fillText("Press space or click to start", 75, height / 2);
     }
 
+    //Endscreen
     function gameOver(): void {
         endScreen = true;
         if (score <= 30) {
