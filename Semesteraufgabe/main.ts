@@ -22,6 +22,8 @@ namespace CatchTheDrop {
 
         let canvas: HTMLCanvasElement = document.getElementsByTagName("canvas")[0];
         ctx = canvas.getContext("2d");
+        canvas.style.display = "block";
+        canvas.style.margin = "0 auto";
 
         height = canvas.height;
         width = canvas.width;
@@ -160,7 +162,7 @@ namespace CatchTheDrop {
                 pressed = 1;
                 startScreen = false;
             } else if (endScreen) {
-                window.location.reload();    
+                window.location.reload();
             }
         }
     }

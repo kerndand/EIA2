@@ -14,6 +14,8 @@ var CatchTheDrop;
     function init(_event) {
         let canvas = document.getElementsByTagName("canvas")[0];
         CatchTheDrop.ctx = canvas.getContext("2d");
+        canvas.style.display = "block";
+        canvas.style.margin = "0 auto";
         CatchTheDrop.height = canvas.height;
         CatchTheDrop.width = canvas.width;
         let sky = new CatchTheDrop.Sky();
